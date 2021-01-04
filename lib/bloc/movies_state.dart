@@ -8,7 +8,7 @@
 // The State Stream responds to input from the View by accepting a
 // Stream<String>. We call this Stream the onTextChanged "intent".
 
-import 'package:tmdb_state_management_flutter/models/tmdb_movie_basic.dart';
+import 'package:models/tmdb_movie_basic.dart';
 
 class MoviesState {
   MoviesState();
@@ -28,7 +28,7 @@ class MoviesNoResults extends MoviesState {}
 class MoviesPopulated extends MoviesState {
   final List<TMDBMovieBasic> movies;
 
-  update({List<TMDBMovieBasic> newMovies}) {
+  MoviesPopulated update({List<TMDBMovieBasic> newMovies}) {
     return this..movies.addAll(newMovies ?? this.movies);
   }
 

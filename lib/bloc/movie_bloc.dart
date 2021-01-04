@@ -38,7 +38,7 @@ class MovieBloc extends BlocBase {
     _nextPageController.close();
   }
 
-  fetchNextPage([event]) {
+  void fetchNextPage([event]) {
     _streamController.addStream(fetchMoviesFromNetwork());
   }
 

@@ -1,3 +1,5 @@
+library models;
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'tmdb_movie_basic.g.dart';
@@ -43,5 +45,6 @@ class TMDBMovieBasic extends Object with _$TMDBMovieBasicSerializerMixin {
       this.overview,
       this.releaseDate});
 
-  factory TMDBMovieBasic.fromJson(Map<String, dynamic> json) => _$TMDBMovieBasicFromJson(json);
+  factory TMDBMovieBasic.fromJson(Map<String, dynamic> json) =>
+      _$TMDBMovieBasicFromJson(json);
 }

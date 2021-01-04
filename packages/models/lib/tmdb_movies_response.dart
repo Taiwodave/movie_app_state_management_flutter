@@ -1,5 +1,7 @@
+library models;
+
 import 'package:json_annotation/json_annotation.dart';
-import 'package:tmdb_state_management_flutter/models/tmdb_movie_basic.dart';
+import 'tmdb_movie_basic.dart';
 
 part 'tmdb_movies_response.g.dart';
 

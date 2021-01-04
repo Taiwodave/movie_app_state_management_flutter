@@ -27,7 +27,9 @@ dependencies:
   http: ^0.12.2
   json_annotation: ^3.1.1
   rxdart: ^0.25.0
-
+  models:
+    path: packages/models
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
