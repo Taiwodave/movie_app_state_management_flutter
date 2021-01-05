@@ -3,15 +3,23 @@
 - [x] flutter_bloc project
 - [x] pagination
 - [x] freezed for models
-- [ ] freezed for bloc states
+- [x] freezed for cubit states
 - [ ] User profiles
 - [ ] Movie details (not needed)
 
-TODO
+## Features
 
-- [ ] Linter
-- [ ] built_value -> Freezed
-- [ ] decide on app navigation
-- [ ] Create separate folder projects
-- [ ] 
+### User profiles
+
+When app starts: Default profile
+
+Can be done with a grid
+
+Profile has a 
+- name
+- ID
+
+Saved movies can be serialized to JSON and saved to disk
+
+- And need to be queried by ID
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmdb_flutter_bloc_demo/bloc/movies_cubit.dart';
-import 'package:tmdb_flutter_bloc_demo/bloc/movies_state.dart';
+import 'package:tmdb_flutter_bloc_demo/blocs/movies/movies_cubit.dart';
+import 'package:tmdb_flutter_bloc_demo/blocs/movies/movies_state.dart';
 import 'package:core/ui/movies_grid.dart';
 
 class NowPlayingPage extends StatefulWidget {
