@@ -51,7 +51,9 @@ class _NowPlayingPageState extends State<NowPlayingPage> {
         if (state is MoviesPopulated) {
           if (state.movies.isNotEmpty) {
             return MoviesGrid(
-                movies: state.movies, controller: _scrollController);
+              movies: state.movies,
+              controller: _scrollController,
+            );
           } else if (state.isLoading) {
             return _buildLoading();
           } else {
