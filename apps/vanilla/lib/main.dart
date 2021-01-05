@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tmdb_state_management_flutter/api/tmdb_api.dart';
+import 'package:core/api/tmdb_api.dart';
 import 'package:tmdb_state_management_flutter/app/now_playing_page.dart';
 import 'package:tmdb_state_management_flutter/bloc/bloc_provider.dart';
 import 'package:tmdb_state_management_flutter/bloc/movie_bloc.dart';

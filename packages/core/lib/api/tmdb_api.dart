@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import 'package:tmdb_state_management_flutter/api/api_keys.dart';
+import 'api_keys.dart';
 
-import 'package:models/tmdb_movies_response.dart';
+import '../models/tmdb_movies_response.dart';
 
 enum PosterSize {
   w92,

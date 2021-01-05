@@ -10,7 +10,7 @@ class NowPlayingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Now Playing'),
+        title: const Text('Now Playing'),
       ),
       body: buildContent(context),
       backgroundColor: Colors.black,
@@ -37,13 +37,13 @@ class NowPlayingPage extends StatelessWidget {
   }
 
   Widget buildLoading() {
-    return Center(
+    return const Center(
       child: CircularProgressIndicator(),
     );
   }
 
   Widget buildList(BuildContext context, List<TMDBMovieBasic> movies) {
-    Size screenSize = MediaQuery.of(context).size;
+    final screenSize = MediaQuery.of(context).size;
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: screenSize.width / 2,

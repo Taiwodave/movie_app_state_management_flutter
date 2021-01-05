@@ -8,7 +8,7 @@
 // The State Stream responds to input from the View by accepting a
 // Stream<String>. We call this Stream the onTextChanged "intent".
 
-import 'package:models/tmdb_movie_basic.dart';
+import 'package:core/models/tmdb_movie_basic.dart';
 
 class MoviesState {
   MoviesState();

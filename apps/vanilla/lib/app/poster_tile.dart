@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tmdb_state_management_flutter/api/tmdb_api.dart';
+import 'package:core/api/tmdb_api.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class PosterTile extends StatelessWidget {

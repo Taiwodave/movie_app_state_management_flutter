@@ -26,8 +26,8 @@ dependencies:
   cupertino_icons: ^1.0.1
   http: ^0.12.2
   rxdart: ^0.25.0
-  models:
-    path: ../../packages/models
+  core:
+    path: ../../packages/core
   
 dev_dependencies:
   flutter_test:

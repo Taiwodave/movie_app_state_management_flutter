@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:rxdart/rxdart.dart';
-import 'package:tmdb_state_management_flutter/api/tmdb_api.dart';
+import 'package:core/api/tmdb_api.dart';
 import 'package:tmdb_state_management_flutter/bloc/bloc_provider.dart';
 import 'package:tmdb_state_management_flutter/bloc/movies_state.dart';
 

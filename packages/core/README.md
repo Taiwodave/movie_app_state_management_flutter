@@ -1,4 +1,4 @@
-# models
+# core
 
 A new Flutter package project.
 
