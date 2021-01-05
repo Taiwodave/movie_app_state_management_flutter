@@ -1,20 +1,10 @@
-// The State represents the data the View requires. The View consumes a Stream
-// of States. The view rebuilds every time the Stream emits a new State!
-//
-// The State Stream will emit new States depending on the situation: The
-// initial state, loading states, the list of results, and any errors that
-// happen.
-//
-// The State Stream responds to input from the View by accepting a
-// Stream<String>. We call this Stream the onTextChanged "intent".
-
 import 'package:core/models/tmdb_movie_basic.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class MoviesState {
   MoviesState();
 }
-
-class MoviesLoading extends MoviesState {}
 
 class MoviesError extends MoviesState {
   final String error;
@@ -26,13 +16,21 @@ class MoviesNoResults extends MoviesState {}
 
 // MoviesResult
 class MoviesPopulated extends MoviesState {
+  MoviesPopulated({@required this.movies, @required this.isLoading});
   final List<TMDBMovieBasic> movies;
+  final bool isLoading;
 
-  MoviesPopulated update({List<TMDBMovieBasic> newMovies}) {
-    return this..movies.addAll(newMovies ?? this.movies);
+  MoviesPopulated copyWith({List<TMDBMovieBasic> movies, bool isLoading}) {
+    return MoviesPopulated(
+      movies: movies ?? this.movies,
+      isLoading: isLoading ?? this.isLoading,
+    );
   }
 
-  MoviesPopulated(this.movies);
+  MoviesPopulated update({List<TMDBMovieBasic> newMovies, bool isLoading}) {
+    return MoviesPopulated(
+      movies: newMovies != null ? (this..movies.addAll(newMovies)) : movies,
+      isLoading: isLoading ?? this.isLoading,
+    );
+  }
 }
-
-class MoviesEmpty extends MoviesState {}

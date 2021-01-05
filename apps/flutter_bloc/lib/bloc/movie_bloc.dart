@@ -1,38 +1,45 @@
 import 'dart:async';
+import 'package:core/models/tmdb_movie_basic.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core/api/tmdb_api.dart';
 import 'package:tmdb_flutter_bloc_demo/bloc/movies_state.dart';
 
 class MoviesCubit extends Cubit<MoviesState> {
-  MoviesCubit({@required this.api}) : super(MoviesLoading()) {
+  MoviesCubit({@required this.api})
+      : super(MoviesPopulated(movies: [], isLoading: false)) {
     init();
   }
 
   TMDBClient api;
-  int page = 0;
 
-  //an instance of the MoviesPopulated state that will be used for each Bloc implementation
-  MoviesPopulated moviesPopulated = MoviesPopulated([]);
+  // Keep track of some variables
+  int _page = 0;
+  bool _isLoadingNextPage = false;
+  final List<TMDBMovieBasic> _movies = [];
 
   void init() {
-    if (page == 0) {
-      fetchMoviesFromNetwork();
+    if (_page == 0) {
+      fetchNextPage();
     }
   }
 
-  Future<void> fetchMoviesFromNetwork() async {
-    if (moviesPopulated.movies.isEmpty) {
-      emit(MoviesLoading());
+  Future<void> fetchNextPage() async {
+    if (_isLoadingNextPage) {
+      return;
     }
 
-    page += 1;
+    _page += 1;
     try {
-      final result = await api.nowPlayingMovies(page: page);
-      if (result.isEmpty) {
-        emit(MoviesEmpty());
+      _isLoadingNextPage = true;
+      emit(MoviesPopulated(movies: _movies, isLoading: true));
+      final result = await api.nowPlayingMovies(page: _page);
+      _isLoadingNextPage = false;
+      if (_page == 1 && result.isEmpty) {
+        emit(MoviesNoResults());
       } else {
-        emit(moviesPopulated.update(newMovies: result.results));
+        emit(MoviesPopulated(
+            movies: _movies..addAll(result.results), isLoading: false));
       }
     } catch (e) {
       print('error $e');
