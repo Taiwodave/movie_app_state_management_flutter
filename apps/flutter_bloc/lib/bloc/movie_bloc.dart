@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:core/models/tmdb_movie_basic.dart';
+import 'package:core/models/tmdb_movies_response.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core/api/tmdb_api.dart';
@@ -33,7 +34,7 @@ class MoviesCubit extends Cubit<MoviesState> {
     try {
       _isLoadingNextPage = true;
       emit(MoviesPopulated(movies: _movies, isLoading: true));
-      final result = await api.nowPlayingMovies(page: _page);
+      final TMDBMoviesResponse result = await api.nowPlayingMovies(page: _page);
       _isLoadingNextPage = false;
       if (_page == 1 && result.isEmpty) {
         emit(MoviesNoResults());
