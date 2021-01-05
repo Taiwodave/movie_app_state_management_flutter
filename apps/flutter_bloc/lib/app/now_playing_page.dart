@@ -29,22 +29,6 @@ class NowPlayingPage extends StatelessWidget {
         return buildLoading();
       },
     );
-    // final movieBloc = BlocProvider.of<MovieBloc>(context);
-    // return StreamBuilder<MoviesState>(
-    //   stream: movieBloc.stream,
-    //   builder: (context, snapshot) {
-    //     if (snapshot.hasData) {
-    //       final data = snapshot.data;
-    //       if (data is MoviesPopulated) {
-    //         return buildList(context, data.movies);
-    //       }
-    //       if (data is MoviesLoading) {
-    //         return buildLoading();
-    //       }
-    //     }
-    //     return buildLoading();
-    //   },
-    // );
   }
 
   Widget buildLoading() {

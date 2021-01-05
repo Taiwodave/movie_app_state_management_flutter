@@ -24,9 +24,5 @@ class MyApp extends StatelessWidget {
       create: (_) => MoviesCubit(api: TMDBClient()),
       child: NowPlayingPage(),
     );
-    // return BlocProvider<MovieBloc>(
-    //   child: NowPlayingPage(),
-    //   bloc: MovieBloc(api: TMDBClient()),
-    // );
   }
 }

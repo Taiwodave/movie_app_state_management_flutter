@@ -3,7 +3,7 @@ import 'package:tmdb_state_management_flutter/app/poster_tile.dart';
 import 'package:tmdb_state_management_flutter/bloc/bloc_provider.dart';
 import 'package:tmdb_state_management_flutter/bloc/movie_bloc.dart';
 import 'package:tmdb_state_management_flutter/bloc/movies_state.dart';
-import 'package:models/tmdb_movie_basic.dart';
+import 'package:core/models/tmdb_movie_basic.dart';
 
 class NowPlayingPage extends StatelessWidget {
   @override
