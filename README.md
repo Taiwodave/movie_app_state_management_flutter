@@ -2,6 +2,8 @@
 
 - [x] flutter_bloc project
 - [x] pagination
+- [x] freezed for models
+- [ ] freezed for bloc states
 - [ ] User profiles
 - [ ] Movie details (not needed)
 

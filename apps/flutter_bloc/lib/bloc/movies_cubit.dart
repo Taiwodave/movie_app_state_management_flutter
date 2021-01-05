@@ -7,16 +7,14 @@ import 'package:core/api/tmdb_api.dart';
 import 'package:tmdb_flutter_bloc_demo/bloc/movies_state.dart';
 
 class MoviesCubit extends Cubit<MoviesState> {
-  MoviesCubit({@required this.api})
-      : super(MoviesPopulated(movies: [], isLoading: false)) {
+  MoviesCubit({@required this.api}) : super(const MoviesState.data([], false)) {
     init();
   }
 
-  TMDBClient api;
+  final TMDBClient api;
 
   // Keep track of some variables
   int _page = 0;
-  bool _isLoadingNextPage = false;
   final List<TMDBMovieBasic> _movies = [];
 
   void init() {
@@ -25,26 +23,28 @@ class MoviesCubit extends Cubit<MoviesState> {
     }
   }
 
+  bool get _canLoadNextPage => state.maybeWhen(
+        dataLoading: (_) => false,
+        data: (_, hasReachedMax) => !hasReachedMax,
+        orElse: () => false,
+      );
+
   Future<void> fetchNextPage() async {
-    if (_isLoadingNextPage) {
+    if (!_canLoadNextPage) {
       return;
     }
 
     _page += 1;
     try {
-      _isLoadingNextPage = true;
-      emit(MoviesPopulated(movies: _movies, isLoading: true));
+      emit(MoviesState.dataLoading(_movies));
       final TMDBMoviesResponse result = await api.nowPlayingMovies(page: _page);
-      _isLoadingNextPage = false;
-      if (_page == 1 && result.isEmpty) {
-        emit(MoviesNoResults());
+      if (result.isEmpty) {
+        emit(MoviesState.data(_movies, true));
       } else {
-        emit(MoviesPopulated(
-            movies: _movies..addAll(result.results), isLoading: false));
+        emit(MoviesState.data(_movies..addAll(result.results), false));
       }
     } catch (e) {
-      print('error $e');
-      emit(MoviesError(e.toString()));
+      emit(MoviesState.error(e.toString()));
     }
   }
 }

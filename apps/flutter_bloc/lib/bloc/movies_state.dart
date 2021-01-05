@@ -1,36 +1,15 @@
 import 'package:core/models/tmdb_movie_basic.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class MoviesState {
-  MoviesState();
-}
+part 'movies_state.freezed.dart';
 
-class MoviesError extends MoviesState {
-  final String error;
-  MoviesError(this.error);
-}
-
-// MoviesEmpty
-class MoviesNoResults extends MoviesState {}
-
-// MoviesResult
-class MoviesPopulated extends MoviesState {
-  MoviesPopulated({@required this.movies, @required this.isLoading});
-  final List<TMDBMovieBasic> movies;
-  final bool isLoading;
-
-  MoviesPopulated copyWith({List<TMDBMovieBasic> movies, bool isLoading}) {
-    return MoviesPopulated(
-      movies: movies ?? this.movies,
-      isLoading: isLoading ?? this.isLoading,
-    );
-  }
-
-  MoviesPopulated update({List<TMDBMovieBasic> newMovies, bool isLoading}) {
-    return MoviesPopulated(
-      movies: newMovies != null ? (this..movies.addAll(newMovies)) : movies,
-      isLoading: isLoading ?? this.isLoading,
-    );
-  }
+@freezed
+abstract class MoviesState with _$MoviesState {
+  const factory MoviesState.data(
+      List<TMDBMovieBasic> movies, bool hasReachedMax) = _Data;
+  const factory MoviesState.dataLoading(List<TMDBMovieBasic> movies) =
+      _DataLoading;
+  const factory MoviesState.error(String error) = _Error;
 }

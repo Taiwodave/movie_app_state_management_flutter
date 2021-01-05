@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:core/api/tmdb_api.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmdb_flutter_bloc_demo/app/now_playing_page.dart';
-import 'package:tmdb_flutter_bloc_demo/bloc/movie_bloc.dart';
+import 'package:tmdb_flutter_bloc_demo/bloc/movies_cubit.dart';
 
 void main() => runApp(MyApp());
 

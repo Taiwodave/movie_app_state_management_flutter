@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmdb_flutter_bloc_demo/bloc/movie_bloc.dart';
+import 'package:tmdb_flutter_bloc_demo/bloc/movies_cubit.dart';
 import 'package:tmdb_flutter_bloc_demo/bloc/movies_state.dart';
 import 'package:core/ui/movies_grid.dart';
 
@@ -48,19 +48,21 @@ class _NowPlayingPageState extends State<NowPlayingPage> {
   Widget buildContent(BuildContext context) {
     return BlocBuilder<MoviesCubit, MoviesState>(
       builder: (context, state) {
-        if (state is MoviesPopulated) {
-          if (state.movies.isNotEmpty) {
-            return MoviesGrid(
-              movies: state.movies,
-              controller: _scrollController,
-            );
-          } else if (state.isLoading) {
-            return _buildLoading();
-          } else {
-            return Container();
-          }
-        }
-        return Container();
+        return state.when(
+          data: (movies, _) => MoviesGrid(
+            movies: movies,
+            controller: _scrollController,
+          ),
+          dataLoading: (movies) {
+            return movies.isEmpty
+                ? _buildLoading()
+                : MoviesGrid(
+                    movies: movies,
+                    controller: _scrollController,
+                  );
+          },
+          error: (error) => Center(child: Text(error)),
+        );
       },
     );
   }
