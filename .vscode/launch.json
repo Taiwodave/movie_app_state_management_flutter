@@ -16,6 +16,12 @@
             "type": "dart"
         },
         {
+            "name": "flutter_bloc",
+            "cwd": "apps/flutter_bloc",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
             "name": "models",
             "cwd": "packages/models",
             "request": "launch",
