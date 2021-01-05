@@ -32,13 +32,14 @@ class MovieBloc extends BlocBase {
     }
   }
 
+  @override
   void dispose() {
     print('closing movie bloc stream $this');
     _streamController.close();
     _nextPageController.close();
   }
 
-  void fetchNextPage([event]) {
+  void fetchNextPage([Object event]) {
     _streamController.addStream(fetchMoviesFromNetwork());
   }
 

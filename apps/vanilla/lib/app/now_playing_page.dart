@@ -19,7 +19,7 @@ class NowPlayingPage extends StatelessWidget {
 
   Widget buildContent(BuildContext context) {
     final movieBloc = BlocProvider.of<MovieBloc>(context);
-    return StreamBuilder(
+    return StreamBuilder<MoviesState>(
       stream: movieBloc.stream,
       builder: (context, snapshot) {
         if (snapshot.hasData) {

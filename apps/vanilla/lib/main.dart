@@ -4,15 +4,15 @@ import 'package:tmdb_state_management_flutter/app/now_playing_page.dart';
 import 'package:tmdb_state_management_flutter/bloc/bloc_provider.dart';
 import 'package:tmdb_state_management_flutter/bloc/movie_bloc.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       title: 'Flutter Demo',
-      theme: new ThemeData(
+      theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
       home: buildNowPlaying(),

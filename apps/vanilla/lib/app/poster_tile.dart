@@ -3,7 +3,7 @@ import 'package:tmdb_state_management_flutter/api/tmdb_api.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class PosterTile extends StatelessWidget {
-  PosterTile({@required this.imagePath});
+  const PosterTile({@required this.imagePath});
   final String imagePath;
 
   @override
