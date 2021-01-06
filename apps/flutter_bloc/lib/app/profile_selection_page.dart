@@ -32,10 +32,11 @@ class ProfilesGrid extends StatelessWidget {
     final localDB = RepositoryProvider.of<LocalDB>(context);
     return StreamBuilder<ProfilesData>(
       stream: localDB.profiles(),
+      initialData: ProfilesData(),
       builder: (_, snapshot) {
-        final List<Profile> profiles =
-            snapshot.hasData ? snapshot.data.profiles.values.toList() : [];
         final screenSize = MediaQuery.of(context).size;
+        final profilesData = snapshot.data;
+        final profiles = profilesData.sortedByName();
         return Padding(
           padding: const EdgeInsets.all(16.0),
           child: GridView.builder(
@@ -43,16 +44,18 @@ class ProfilesGrid extends StatelessWidget {
               maxCrossAxisExtent: (screenSize.width - 32.0) / 3,
               mainAxisSpacing: 10.0,
               crossAxisSpacing: 10.0,
-              childAspectRatio: 185.0 / 278.0,
+              childAspectRatio: 0.75,
             ),
             itemCount: profiles.length + 1,
             itemBuilder: (context, index) {
               if (index < profiles.length) {
+                final profile = profiles[index];
                 return ProfileTile(
-                  profile: profiles[index],
-                  selected: false,
-                  onPressed: () {
-                    // TODO: Select profile in DB, move to movies page
+                  profile: profile,
+                  selected: profilesData.selectedId == profile.id,
+                  onPressed: () async {
+                    final localDB = RepositoryProvider.of<LocalDB>(context);
+                    await localDB.setSelectedProfile(profile);
                   },
                 );
               }

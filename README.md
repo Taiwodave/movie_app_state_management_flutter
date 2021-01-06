@@ -4,8 +4,9 @@
 - [x] pagination
 - [x] freezed for models
 - [x] freezed for cubit states
-- [ ] User profiles
-- [ ] Movie details (not needed)
+- [x] User profiles
+- [x] Selected user profile
+- [ ] Bottom tabs
 
 ## Features
 

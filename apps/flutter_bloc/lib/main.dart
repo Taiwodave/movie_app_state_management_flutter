@@ -9,7 +9,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Initialize DB
   final appDocDir = await getApplicationDocumentsDirectory();
-  final localDb = await LocalDB.init('${appDocDir.path}/profiles.db');
+  final localDb = await LocalDB.init('${appDocDir.path}/sembast.db');
   runApp(RepositoryProvider<LocalDB>(
     create: (_) => localDb,
     child: MyApp(),

@@ -1,7 +1,21 @@
 import 'package:core/models/profile.dart';
+import 'package:core/models/profiles_data.dart';
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 
+/*
+ Profile selection
+ - Show selected in profiles page (two streams?)
+ - On Select, switch back to main navigation page (students asked for this)
+ - Need to know at runtime what's the selected profile
+ Option 1: 
+ - keep "selected" flag per-profile
+ - pro: easy to show if a profile is selected
+ - cons: need to update all profiles when one is selected
+ - hard to work out the selected one (at a snapshot)
+ - could store this in Profiles class
+ -> Make profiles class available to all
+ */
 class LocalDB {
   static DatabaseFactory dbFactory = databaseFactoryIo;
 
@@ -17,30 +31,42 @@ class LocalDB {
   Future<void> createProfile(Profile profile) async {
     final profilesJson = await store.record('profiles').get(db) as String;
     if (profilesJson != null) {
-      final profiles = Profiles.fromJson(profilesJson);
-      profiles.values[profile.id] = profile;
-      await store.record('profiles').put(db, profiles.toJson());
+      final profilesData = ProfilesData.fromJson(profilesJson);
+      profilesData.profiles[profile.id] = profile;
+      final newProfiles = profilesData.copyWith(selectedId: profile.id);
+      await store.record('profiles').put(db, newProfiles.toJson());
     } else {
-      final profiles = Profiles(values: {profile.id: profile});
-      await store.record('profiles').put(db, profiles.toJson());
+      final profilesData =
+          ProfilesData(profiles: {profile.id: profile}, selectedId: profile.id);
+      await store.record('profiles').put(db, profilesData.toJson());
     }
   }
 
-  Stream<Profiles> profiles() {
-    final record = store.record('profiles');
-    return record.onSnapshot(db).map((snapshot) =>
-        snapshot != null ? Profiles.fromJson(snapshot.value) : null);
-  }
-
-  Future<Profiles> getProfiles() async {
+  Future<void> setSelectedProfile(Profile profile) async {
     final profilesJson = await store.record('profiles').get(db) as String;
-    return profilesJson != null ? Profiles.fromJson(profilesJson) : null;
+    if (profilesJson != null) {
+      final profilesData = ProfilesData.fromJson(profilesJson);
+      if (profilesData.profiles[profile.id] != null) {
+        final newProfiles = profilesData.copyWith(selectedId: profile.id);
+        await store.record('profiles').put(db, newProfiles.toJson());
+        return;
+      }
+    }
+    throw StateError('Profile $profile does not exist and can\'t be selected');
   }
 
-  Future<Profile> getProfile(String profileId) async {
-    final profileEncoded =
-        await store.record('profile/$profileId').get(db) as String;
-    return Profile.fromJson(profileEncoded);
+  Stream<ProfilesData> profiles() {
+    final record = store.record('profiles');
+    return record.onSnapshot(db).map((snapshot) => snapshot != null
+        ? ProfilesData.fromJson(snapshot.value)
+        : ProfilesData());
+  }
+
+  Future<ProfilesData> getProfiles() async {
+    final profilesJson = await store.record('profiles').get(db) as String;
+    return profilesJson != null
+        ? ProfilesData.fromJson(profilesJson)
+        : ProfilesData();
   }
 
   Future<bool> profileExistsWithName(String name) async {
@@ -49,7 +75,7 @@ class LocalDB {
       return false;
     }
     final allNames =
-        profiles.values.values.map((profile) => profile.name).toList();
+        profiles.profiles.values.map((profile) => profile.name).toList();
     return allNames.contains(name);
   }
 }
