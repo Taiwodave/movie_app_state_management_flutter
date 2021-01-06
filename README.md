@@ -1,11 +1,6 @@
 ## Flutter State Management: Movie App with Provider, Riverpod, flutter_bloc 
 
-Title
-tmdb_flutter_bloc_demo
 
-movie_app_demo_flutter_bloc
-movie_app_demo_riverpod
-movie_app_demo_provider
 
 - [x] flutter_bloc project
 - [x] pagination
@@ -15,7 +10,8 @@ movie_app_demo_provider
 - [x] Selected user profile
 - [x] Bottom tabs
 - [x] Move all models to core package
-- [ ] Create riverpod project (work out shared parts)
+- [x] Create riverpod project (work out shared parts)
+- [ ] Movie favourites (per profile)
 
 ## Supported state management solutions
 
@@ -23,9 +19,6 @@ movie_app_demo_provider
 - [x] flutter_bloc (cubit actually)
 - [ ] Provider
 
-## Features
-
-// https://flutter.dev/docs/release/breaking-changes/network-policy-ios-android
 
 ### User profiles
 
