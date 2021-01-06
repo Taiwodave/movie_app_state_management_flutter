@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:core/models/profile/profiles_data.dart';
 import 'package:core/persistence/local_db.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

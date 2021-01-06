@@ -20,9 +20,9 @@ class _$TMDBMoviesResponseTearOff {
   _TMDBMoviesResponse call(
       {int page,
       List<TMDBMovieBasic> results,
-      @JsonKey(name: "total_results") int totalResults,
-      @JsonKey(name: "total_pages") int totalPages,
-      @JsonKey(name: "errors") List<String> errors}) {
+      @JsonKey(name: 'total_results') int totalResults,
+      @JsonKey(name: 'total_pages') int totalPages,
+      @JsonKey(name: 'errors') List<String> errors}) {
     return _TMDBMoviesResponse(
       page: page,
       results: results,
@@ -46,11 +46,11 @@ const $TMDBMoviesResponse = _$TMDBMoviesResponseTearOff();
 mixin _$TMDBMoviesResponse {
   int get page;
   List<TMDBMovieBasic> get results;
-  @JsonKey(name: "total_results")
+  @JsonKey(name: 'total_results')
   int get totalResults;
-  @JsonKey(name: "total_pages")
+  @JsonKey(name: 'total_pages')
   int get totalPages;
-  @JsonKey(name: "errors")
+  @JsonKey(name: 'errors')
   List<String> get errors;
 
   Map<String, dynamic> toJson();
@@ -65,9 +65,9 @@ abstract class $TMDBMoviesResponseCopyWith<$Res> {
   $Res call(
       {int page,
       List<TMDBMovieBasic> results,
-      @JsonKey(name: "total_results") int totalResults,
-      @JsonKey(name: "total_pages") int totalPages,
-      @JsonKey(name: "errors") List<String> errors});
+      @JsonKey(name: 'total_results') int totalResults,
+      @JsonKey(name: 'total_pages') int totalPages,
+      @JsonKey(name: 'errors') List<String> errors});
 }
 
 /// @nodoc
@@ -109,9 +109,9 @@ abstract class _$TMDBMoviesResponseCopyWith<$Res>
   $Res call(
       {int page,
       List<TMDBMovieBasic> results,
-      @JsonKey(name: "total_results") int totalResults,
-      @JsonKey(name: "total_pages") int totalPages,
-      @JsonKey(name: "errors") List<String> errors});
+      @JsonKey(name: 'total_results') int totalResults,
+      @JsonKey(name: 'total_pages') int totalPages,
+      @JsonKey(name: 'errors') List<String> errors});
 }
 
 /// @nodoc
@@ -152,9 +152,9 @@ class _$_TMDBMoviesResponse implements _TMDBMoviesResponse {
   _$_TMDBMoviesResponse(
       {this.page,
       this.results,
-      @JsonKey(name: "total_results") this.totalResults,
-      @JsonKey(name: "total_pages") this.totalPages,
-      @JsonKey(name: "errors") this.errors});
+      @JsonKey(name: 'total_results') this.totalResults,
+      @JsonKey(name: 'total_pages') this.totalPages,
+      @JsonKey(name: 'errors') this.errors});
 
   factory _$_TMDBMoviesResponse.fromJson(Map<String, dynamic> json) =>
       _$_$_TMDBMoviesResponseFromJson(json);
@@ -164,13 +164,13 @@ class _$_TMDBMoviesResponse implements _TMDBMoviesResponse {
   @override
   final List<TMDBMovieBasic> results;
   @override
-  @JsonKey(name: "total_results")
+  @JsonKey(name: 'total_results')
   final int totalResults;
   @override
-  @JsonKey(name: "total_pages")
+  @JsonKey(name: 'total_pages')
   final int totalPages;
   @override
-  @JsonKey(name: "errors")
+  @JsonKey(name: 'errors')
   final List<String> errors;
 
   @override
@@ -220,9 +220,9 @@ abstract class _TMDBMoviesResponse implements TMDBMoviesResponse {
   factory _TMDBMoviesResponse(
       {int page,
       List<TMDBMovieBasic> results,
-      @JsonKey(name: "total_results") int totalResults,
-      @JsonKey(name: "total_pages") int totalPages,
-      @JsonKey(name: "errors") List<String> errors}) = _$_TMDBMoviesResponse;
+      @JsonKey(name: 'total_results') int totalResults,
+      @JsonKey(name: 'total_pages') int totalPages,
+      @JsonKey(name: 'errors') List<String> errors}) = _$_TMDBMoviesResponse;
 
   factory _TMDBMoviesResponse.fromJson(Map<String, dynamic> json) =
       _$_TMDBMoviesResponse.fromJson;
@@ -232,13 +232,13 @@ abstract class _TMDBMoviesResponse implements TMDBMoviesResponse {
   @override
   List<TMDBMovieBasic> get results;
   @override
-  @JsonKey(name: "total_results")
+  @JsonKey(name: 'total_results')
   int get totalResults;
   @override
-  @JsonKey(name: "total_pages")
+  @JsonKey(name: 'total_pages')
   int get totalPages;
   @override
-  @JsonKey(name: "errors")
+  @JsonKey(name: 'errors')
   List<String> get errors;
   @override
   _$TMDBMoviesResponseCopyWith<_TMDBMoviesResponse> get copyWith;
