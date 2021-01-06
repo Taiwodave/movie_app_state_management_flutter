@@ -17,6 +17,12 @@ movie_app_demo_provider
 - [x] Move all models to core package
 - [ ] Create riverpod project (work out shared parts)
 
+## Supported state management solutions
+
+- [x] Riverpod
+- [x] flutter_bloc (cubit actually)
+- [ ] Provider
+
 ## Features
 
 // https://flutter.dev/docs/release/breaking-changes/network-policy-ios-android

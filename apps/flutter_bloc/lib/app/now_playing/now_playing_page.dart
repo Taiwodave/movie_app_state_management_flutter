@@ -1,15 +1,15 @@
 import 'package:core/api/tmdb_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core/models/app_state/movies_state.dart';
+import 'package:core/models/app_state/now_playing_state.dart';
 import 'package:core/ui/movies_grid.dart';
 import 'package:core/ui/scrollable_movies_page_builder.dart';
-import 'package:movie_app_demo_flutter_bloc/app/now_playing/movies_cubit.dart';
+import 'package:movie_app_demo_flutter_bloc/app/now_playing/now_playing_cubit.dart';
 
 class NowPlayingPage extends StatelessWidget {
   static Widget create(BuildContext context) {
-    return BlocProvider<MoviesCubit>(
-      create: (_) => MoviesCubit(api: TMDBClient()),
+    return BlocProvider<NowPlayingCubit>(
+      create: (_) => NowPlayingCubit(api: TMDBClient()),
       child: NowPlayingPage(),
     );
   }
@@ -18,11 +18,11 @@ class NowPlayingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScrollableMoviesPageBuilder(
       onNextPageRequested: () {
-        final moviesCubit = BlocProvider.of<MoviesCubit>(context);
+        final moviesCubit = BlocProvider.of<NowPlayingCubit>(context);
         moviesCubit.fetchNextPage();
       },
       builder: (context, controller) {
-        return BlocBuilder<MoviesCubit, MoviesState>(
+        return BlocBuilder<NowPlayingCubit, NowPlayingState>(
           builder: (context, state) {
             return state.when(
               data: (movies, _) => MoviesGrid(

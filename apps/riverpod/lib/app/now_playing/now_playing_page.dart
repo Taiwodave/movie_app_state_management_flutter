@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:core/ui/movies_grid.dart';
 import 'package:core/ui/scrollable_movies_page_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:movie_app_demo_riverpod/app/now_playing/movies_model.dart';
+import 'package:movie_app_demo_riverpod/app/now_playing/now_playing_model.dart';
 
-final moviesModelProvider =
-    StateNotifierProvider<MoviesModel>((ref) => MoviesModel(api: TMDBClient()));
+final moviesModelProvider = StateNotifierProvider<NowPlayingModel>(
+    (ref) => NowPlayingModel(api: TMDBClient()));
 
 class NowPlayingPage extends StatelessWidget {
   @override
@@ -16,7 +16,7 @@ class NowPlayingPage extends StatelessWidget {
         final moviesModel = context.read(moviesModelProvider);
         moviesModel.fetchNextPage();
       },
-      builder: (context, controller) {
+      builder: (_, controller) {
         return Consumer(
           builder: (context, watch, _) {
             final state = watch(moviesModelProvider.state);

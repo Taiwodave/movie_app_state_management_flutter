@@ -2,12 +2,13 @@ import 'dart:async';
 import 'package:core/models/tmdb/tmdb_movie_basic.dart';
 import 'package:core/models/tmdb/tmdb_movies_response.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core/api/tmdb_api.dart';
-import 'package:core/models/app_state/movies_state.dart';
+import 'package:core/models/app_state/now_playing_state.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MoviesCubit extends Cubit<MoviesState> {
-  MoviesCubit({@required this.api}) : super(const MoviesState.data([], false)) {
+class NowPlayingModel extends StateNotifier<NowPlayingState> {
+  NowPlayingModel({@required this.api})
+      : super(const NowPlayingState.data([], false)) {
     init();
   }
 
@@ -36,15 +37,15 @@ class MoviesCubit extends Cubit<MoviesState> {
 
     _page += 1;
     try {
-      emit(MoviesState.dataLoading(_movies));
+      state = NowPlayingState.dataLoading(_movies);
       final TMDBMoviesResponse result = await api.nowPlayingMovies(page: _page);
       if (result.isEmpty) {
-        emit(MoviesState.data(_movies, true));
+        state = NowPlayingState.data(_movies, true);
       } else {
-        emit(MoviesState.data(_movies..addAll(result.results), false));
+        state = NowPlayingState.data(_movies..addAll(result.results), false);
       }
     } catch (e) {
-      emit(MoviesState.error(e.toString()));
+      state = NowPlayingState.error(e.toString());
     }
   }
 }

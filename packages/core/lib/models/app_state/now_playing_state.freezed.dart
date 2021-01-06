@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
-part of 'movies_state.dart';
+part of 'now_playing_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -10,8 +10,8 @@ part of 'movies_state.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-class _$MoviesStateTearOff {
-  const _$MoviesStateTearOff();
+class _$NowPlayingStateTearOff {
+  const _$NowPlayingStateTearOff();
 
 // ignore: unused_element
   _Data data(List<TMDBMovieBasic> movies, bool hasReachedMax) {
@@ -38,10 +38,10 @@ class _$MoviesStateTearOff {
 
 /// @nodoc
 // ignore: unused_element
-const $MoviesState = _$MoviesStateTearOff();
+const $NowPlayingState = _$NowPlayingStateTearOff();
 
 /// @nodoc
-mixin _$MoviesState {
+mixin _$NowPlayingState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult data(List<TMDBMovieBasic> movies, bool hasReachedMax),
@@ -71,19 +71,20 @@ mixin _$MoviesState {
 }
 
 /// @nodoc
-abstract class $MoviesStateCopyWith<$Res> {
-  factory $MoviesStateCopyWith(
-          MoviesState value, $Res Function(MoviesState) then) =
-      _$MoviesStateCopyWithImpl<$Res>;
+abstract class $NowPlayingStateCopyWith<$Res> {
+  factory $NowPlayingStateCopyWith(
+          NowPlayingState value, $Res Function(NowPlayingState) then) =
+      _$NowPlayingStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$MoviesStateCopyWithImpl<$Res> implements $MoviesStateCopyWith<$Res> {
-  _$MoviesStateCopyWithImpl(this._value, this._then);
+class _$NowPlayingStateCopyWithImpl<$Res>
+    implements $NowPlayingStateCopyWith<$Res> {
+  _$NowPlayingStateCopyWithImpl(this._value, this._then);
 
-  final MoviesState _value;
+  final NowPlayingState _value;
   // ignore: unused_field
-  final $Res Function(MoviesState) _then;
+  final $Res Function(NowPlayingState) _then;
 }
 
 /// @nodoc
@@ -94,7 +95,7 @@ abstract class _$DataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$DataCopyWithImpl<$Res> extends _$MoviesStateCopyWithImpl<$Res>
+class __$DataCopyWithImpl<$Res> extends _$NowPlayingStateCopyWithImpl<$Res>
     implements _$DataCopyWith<$Res> {
   __$DataCopyWithImpl(_Data _value, $Res Function(_Data) _then)
       : super(_value, (v) => _then(v as _Data));
@@ -127,14 +128,14 @@ class _$_Data with DiagnosticableTreeMixin implements _Data {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MoviesState.data(movies: $movies, hasReachedMax: $hasReachedMax)';
+    return 'NowPlayingState.data(movies: $movies, hasReachedMax: $hasReachedMax)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'MoviesState.data'))
+      ..add(DiagnosticsProperty('type', 'NowPlayingState.data'))
       ..add(DiagnosticsProperty('movies', movies))
       ..add(DiagnosticsProperty('hasReachedMax', hasReachedMax));
   }
@@ -217,7 +218,7 @@ class _$_Data with DiagnosticableTreeMixin implements _Data {
   }
 }
 
-abstract class _Data implements MoviesState {
+abstract class _Data implements NowPlayingState {
   const factory _Data(List<TMDBMovieBasic> movies, bool hasReachedMax) =
       _$_Data;
 
@@ -235,7 +236,8 @@ abstract class _$DataLoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$DataLoadingCopyWithImpl<$Res> extends _$MoviesStateCopyWithImpl<$Res>
+class __$DataLoadingCopyWithImpl<$Res>
+    extends _$NowPlayingStateCopyWithImpl<$Res>
     implements _$DataLoadingCopyWith<$Res> {
   __$DataLoadingCopyWithImpl(
       _DataLoading _value, $Res Function(_DataLoading) _then)
@@ -263,14 +265,14 @@ class _$_DataLoading with DiagnosticableTreeMixin implements _DataLoading {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MoviesState.dataLoading(movies: $movies)';
+    return 'NowPlayingState.dataLoading(movies: $movies)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'MoviesState.dataLoading'))
+      ..add(DiagnosticsProperty('type', 'NowPlayingState.dataLoading'))
       ..add(DiagnosticsProperty('movies', movies));
   }
 
@@ -347,7 +349,7 @@ class _$_DataLoading with DiagnosticableTreeMixin implements _DataLoading {
   }
 }
 
-abstract class _DataLoading implements MoviesState {
+abstract class _DataLoading implements NowPlayingState {
   const factory _DataLoading(List<TMDBMovieBasic> movies) = _$_DataLoading;
 
   List<TMDBMovieBasic> get movies;
@@ -362,7 +364,7 @@ abstract class _$ErrorCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$ErrorCopyWithImpl<$Res> extends _$MoviesStateCopyWithImpl<$Res>
+class __$ErrorCopyWithImpl<$Res> extends _$NowPlayingStateCopyWithImpl<$Res>
     implements _$ErrorCopyWith<$Res> {
   __$ErrorCopyWithImpl(_Error _value, $Res Function(_Error) _then)
       : super(_value, (v) => _then(v as _Error));
@@ -389,14 +391,14 @@ class _$_Error with DiagnosticableTreeMixin implements _Error {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MoviesState.error(error: $error)';
+    return 'NowPlayingState.error(error: $error)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'MoviesState.error'))
+      ..add(DiagnosticsProperty('type', 'NowPlayingState.error'))
       ..add(DiagnosticsProperty('error', error));
   }
 
@@ -473,7 +475,7 @@ class _$_Error with DiagnosticableTreeMixin implements _Error {
   }
 }
 
-abstract class _Error implements MoviesState {
+abstract class _Error implements NowPlayingState {
   const factory _Error(String error) = _$_Error;
 
   String get error;
