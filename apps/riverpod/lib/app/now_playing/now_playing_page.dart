@@ -8,32 +8,36 @@ import 'package:movie_app_demo_riverpod/app/now_playing/movies_model.dart';
 final moviesModelProvider =
     StateNotifierProvider<MoviesModel>((ref) => MoviesModel(api: TMDBClient()));
 
-class NowPlayingPage extends ConsumerWidget {
+class NowPlayingPage extends StatelessWidget {
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
+  Widget build(BuildContext context) {
     return ScrollableMoviesPageBuilder(
       onNextPageRequested: () {
         final moviesModel = context.read(moviesModelProvider);
         moviesModel.fetchNextPage();
       },
       builder: (context, controller) {
-        final state = watch(moviesModelProvider.state);
-        return state.when(
-          data: (movies, _) => MoviesGrid(
-            movies: movies,
-            controller: controller,
-          ),
-          dataLoading: (movies) {
-            return movies.isEmpty
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : MoviesGrid(
-                    movies: movies,
-                    controller: controller,
-                  );
+        return Consumer(
+          builder: (context, watch, _) {
+            final state = watch(moviesModelProvider.state);
+            return state.when(
+              data: (movies, _) => MoviesGrid(
+                movies: movies,
+                controller: controller,
+              ),
+              dataLoading: (movies) {
+                return movies.isEmpty
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : MoviesGrid(
+                        movies: movies,
+                        controller: controller,
+                      );
+              },
+              error: (error) => Center(child: Text(error)),
+            );
           },
-          error: (error) => Center(child: Text(error)),
         );
       },
     );
