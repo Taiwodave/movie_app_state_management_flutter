@@ -1,9 +1,9 @@
 import 'package:core/persistence/local_db.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmdb_flutter_bloc_demo/blocs/create_profile/create_profile_cubit.dart';
 import 'package:core/models/app_state/create_profile_state.dart';
 import 'package:core/ui/create_profile_page.dart';
+import 'package:tmdb_flutter_bloc_demo/app/create_profile/create_profile_cubit.dart';
 
 class CreateProfilePageBuilder extends StatelessWidget {
   static Widget create(BuildContext context) {

@@ -2,9 +2,9 @@ import 'package:core/persistence/local_db.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core/ui/home_navigation_builder.dart';
-import 'package:tmdb_flutter_bloc_demo/app/now_playing_page.dart';
-import 'package:tmdb_flutter_bloc_demo/app/profile_selection_page.dart';
-import 'package:tmdb_flutter_bloc_demo/blocs/app_startup/app_startup_cubit.dart';
+import 'package:tmdb_flutter_bloc_demo/app/app_startup/app_startup_cubit.dart';
+import 'package:tmdb_flutter_bloc_demo/app/now_playing/now_playing_page.dart';
+import 'package:tmdb_flutter_bloc_demo/app/profile_selection/profile_selection_page.dart';
 import 'package:core/models/app_state/app_startup_state.dart';
 
 /// This is the "root" widget of the app, which sits just below MaterialApp.
