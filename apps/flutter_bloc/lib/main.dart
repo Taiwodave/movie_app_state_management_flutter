@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:core/api/tmdb_api.dart';
 import 'package:core/persistence/local_db.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path_provider/path_provider.dart';
@@ -22,6 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(),
       home: AppStartupPage.create(context),
     );

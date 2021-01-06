@@ -3,14 +3,14 @@ import 'package:core/models/profiles_data.dart';
 import 'package:core/persistence/local_db.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmdb_flutter_bloc_demo/app/create_profile_page.dart';
+import 'package:tmdb_flutter_bloc_demo/app/create_profile_page_builder.dart';
 
 class ProfileSelectionPage extends StatelessWidget {
   Future<void> addProfile(BuildContext context) async {
     await Navigator.of(context).push<void>(
       MaterialPageRoute(
         fullscreenDialog: true,
-        builder: (_) => CreateProfilePage.create(context),
+        builder: (_) => CreateProfilePageBuilder.create(context),
       ),
     );
   }

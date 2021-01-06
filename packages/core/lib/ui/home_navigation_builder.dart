@@ -1,40 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:tmdb_flutter_bloc_demo/app/now_playing_page.dart';
-import 'package:tmdb_flutter_bloc_demo/app/profile_selection_page.dart';
 
 enum TabItem { nowPlaying, profiles }
 
-class HomeNavigation extends StatefulWidget {
+class HomeNavigationBuilder extends StatefulWidget {
+  const HomeNavigationBuilder({Key key, this.builder}) : super(key: key);
+  final Widget Function(BuildContext, TabItem) builder;
+
   @override
-  _HomeNavigationState createState() => _HomeNavigationState();
+  _HomeNavigationBuilderState createState() => _HomeNavigationBuilderState();
 }
 
-class _HomeNavigationState extends State<HomeNavigation> {
+class _HomeNavigationBuilderState extends State<HomeNavigationBuilder> {
   TabItem _currentTab = TabItem.nowPlaying;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Home(currentTab: _currentTab),
+      body: widget.builder(context, _currentTab),
       bottomNavigationBar: BottomNavigation(
         currentTab: _currentTab,
         onSelectTab: (tab) => setState(() => _currentTab = tab),
       ),
     );
-  }
-}
-
-class Home extends StatelessWidget {
-  const Home({Key key, this.currentTab}) : super(key: key);
-  final TabItem currentTab;
-
-  @override
-  Widget build(BuildContext context) {
-    if (currentTab == TabItem.nowPlaying) {
-      return NowPlayingPage.create(context);
-    } else {
-      return ProfileSelectionPage();
-    }
   }
 }
 
@@ -58,9 +45,7 @@ class BottomNavigation extends StatelessWidget {
           label: 'Profiles',
         ),
       ],
-      onTap: (index) => onSelectTab(
-        TabItem.values[index],
-      ),
+      onTap: (index) => onSelectTab(TabItem.values[index]),
     );
   }
 }

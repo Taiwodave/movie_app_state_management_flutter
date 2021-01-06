@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmdb_flutter_bloc_demo/blocs/movies/movies_cubit.dart';
 import 'package:tmdb_flutter_bloc_demo/blocs/movies/movies_state.dart';
 import 'package:core/ui/movies_grid.dart';
-
 import 'package:core/ui/scrollable_movies_page_builder.dart';
 
 class NowPlayingPage extends StatelessWidget {

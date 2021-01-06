@@ -1,7 +1,8 @@
 import 'package:core/persistence/local_db.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmdb_flutter_bloc_demo/app/home_navigation.dart';
+import 'package:core/ui/home_navigation_builder.dart';
+import 'package:tmdb_flutter_bloc_demo/app/now_playing_page.dart';
 import 'package:tmdb_flutter_bloc_demo/app/profile_selection_page.dart';
 import 'package:tmdb_flutter_bloc_demo/blocs/app_startup/app_startup_cubit.dart';
 import 'package:tmdb_flutter_bloc_demo/blocs/app_startup/app_startup_state.dart';
@@ -27,7 +28,15 @@ class AppStartupPage extends StatelessWidget {
           needsProfile: () => ProfileSelectionPage(),
           profileLoaded: (profileData) => RepositoryProvider.value(
             value: profileData,
-            child: HomeNavigation(),
+            child: HomeNavigationBuilder(
+              builder: (context, tabItem) {
+                if (tabItem == TabItem.nowPlaying) {
+                  return NowPlayingPage.create(context);
+                } else {
+                  return ProfileSelectionPage();
+                }
+              },
+            ),
           ),
         );
       },
