@@ -50,7 +50,9 @@ class ProfilesGrid extends StatelessWidget {
                 return ProfileTile(
                   profile: profiles[index],
                   selected: false,
-                  onPressed: () {},
+                  onPressed: () {
+                    // TODO: Select profile in DB, move to movies page
+                  },
                 );
               }
               return AddProfileButton(
