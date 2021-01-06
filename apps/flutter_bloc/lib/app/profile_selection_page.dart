@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmdb_flutter_bloc_demo/app/create_profile_page.dart';
 
-class ProfilesSelectionPage extends StatelessWidget {
+class ProfileSelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,43 +29,38 @@ class ProfilesGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final localDB = RepositoryProvider.of<LocalDB>(context);
-    return StreamBuilder<ProfilesData>(
-      stream: localDB.profiles(),
-      initialData: ProfilesData(),
-      builder: (_, snapshot) {
-        final screenSize = MediaQuery.of(context).size;
-        final profilesData = snapshot.data;
-        final profiles = profilesData.sortedByName();
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: (screenSize.width - 32.0) / 3,
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0,
-              childAspectRatio: 0.75,
-            ),
-            itemCount: profiles.length + 1,
-            itemBuilder: (context, index) {
-              if (index < profiles.length) {
-                final profile = profiles[index];
-                return ProfileTile(
-                  profile: profile,
-                  selected: profilesData.selectedId == profile.id,
-                  onPressed: () async {
-                    final localDB = RepositoryProvider.of<LocalDB>(context);
-                    await localDB.setSelectedProfile(profile);
-                  },
-                );
-              }
-              return AddProfileButton(
-                onPressed: () => addProfile(context),
-              );
-            },
-          ),
-        );
-      },
+    final profilesData = RepositoryProvider.of<ProfilesData>(context);
+    final screenSize = MediaQuery.of(context).size;
+    final profiles = profilesData.sortedByName();
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: GridView.builder(
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: (screenSize.width - 32.0) / 3,
+          mainAxisSpacing: 10.0,
+          crossAxisSpacing: 10.0,
+          childAspectRatio: 0.75,
+        ),
+        itemCount: profiles.length + 1,
+        itemBuilder: (context, index) {
+          if (index < profiles.length) {
+            final profile = profiles[index];
+            return ProfileTile(
+              profile: profile,
+              selected: profilesData.selectedId == profile.id,
+              onPressed: () async {
+                final localDB = RepositoryProvider.of<LocalDB>(context);
+                // the selected profile is an app-state variable.
+                // changing this will cause a reload of AppStartupPage
+                await localDB.setSelectedProfile(profile);
+              },
+            );
+          }
+          return AddProfileButton(
+            onPressed: () => addProfile(context),
+          );
+        },
+      ),
     );
   }
 }

@@ -55,14 +55,14 @@ class LocalDB {
     throw StateError('Profile $profile does not exist and can\'t be selected');
   }
 
-  Stream<ProfilesData> profiles() {
+  Stream<ProfilesData> profilesData() {
     final record = store.record('profiles');
     return record.onSnapshot(db).map((snapshot) => snapshot != null
         ? ProfilesData.fromJson(snapshot.value)
         : ProfilesData());
   }
 
-  Future<ProfilesData> getProfiles() async {
+  Future<ProfilesData> getProfilesData() async {
     final profilesJson = await store.record('profiles').get(db) as String;
     return profilesJson != null
         ? ProfilesData.fromJson(profilesJson)
@@ -70,7 +70,7 @@ class LocalDB {
   }
 
   Future<bool> profileExistsWithName(String name) async {
-    final profiles = await getProfiles();
+    final profiles = await getProfilesData();
     if (profiles == null) {
       return false;
     }

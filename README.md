@@ -10,6 +10,8 @@
 
 ## Features
 
+// https://flutter.dev/docs/release/breaking-changes/network-policy-ios-android
+
 ### User profiles
 
 When app starts: Default profile
