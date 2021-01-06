@@ -4,7 +4,7 @@ import 'package:core/models/tmdb/tmdb_movies_response.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core/api/tmdb_api.dart';
-import 'package:tmdb_flutter_bloc_demo/blocs/movies/movies_state.dart';
+import 'package:core/models/app_state/movies_state.dart';
 
 class MoviesCubit extends Cubit<MoviesState> {
   MoviesCubit({@required this.api}) : super(const MoviesState.data([], false)) {

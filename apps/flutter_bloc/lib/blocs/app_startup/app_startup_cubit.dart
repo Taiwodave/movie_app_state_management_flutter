@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:core/persistence/local_db.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmdb_flutter_bloc_demo/blocs/app_startup/app_startup_state.dart';
+import 'package:core/models/app_state/app_startup_state.dart';
 
 class AppStartupCubit extends Cubit<AppStartupState> {
   AppStartupCubit({@required this.localDB})

@@ -5,7 +5,7 @@ import 'package:core/ui/home_navigation_builder.dart';
 import 'package:tmdb_flutter_bloc_demo/app/now_playing_page.dart';
 import 'package:tmdb_flutter_bloc_demo/app/profile_selection_page.dart';
 import 'package:tmdb_flutter_bloc_demo/blocs/app_startup/app_startup_cubit.dart';
-import 'package:tmdb_flutter_bloc_demo/blocs/app_startup/app_startup_state.dart';
+import 'package:core/models/app_state/app_startup_state.dart';
 
 /// This is the "root" widget of the app, which sits just below MaterialApp.
 /// It performs app-state initialization and returns the appropriate page.
