@@ -9,17 +9,17 @@ class CreateProfilePageBuilder extends StatelessWidget {
   static Widget create(BuildContext context) {
     final localDB = RepositoryProvider.of<LocalDB>(context);
     return BlocProvider<CreateProfileCubit>(
-      create: (_) => CreateProfileCubit(
-        localDB: localDB,
-        navigatorState: Navigator.of(context),
-      ),
+      create: (_) => CreateProfileCubit(localDB: localDB),
       child: CreateProfilePageBuilder(),
     );
   }
 
   Future<void> createProfile(BuildContext context, String name) async {
     final cubit = BlocProvider.of<CreateProfileCubit>(context);
-    await cubit.createProfile(name);
+    final success = await cubit.createProfile(name);
+    if (success) {
+      Navigator.of(context).pop();
+    }
   }
 
   @override

@@ -2,32 +2,32 @@ import 'package:core/models/profile/profile.dart';
 import 'package:core/persistence/local_db.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core/models/app_state/create_profile_state.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 
-class CreateProfileCubit extends Cubit<CreateProfileState> {
-  CreateProfileCubit({@required this.localDB})
+class CreateProfileModel extends StateNotifier<CreateProfileState> {
+  CreateProfileModel({@required this.localDB})
       : super(const CreateProfileState.notSubmitted());
   final LocalDB localDB;
 
   Future<bool> createProfile(String name) async {
     if (name.isEmpty) {
-      emit(const CreateProfileState.error('Name can\'t be empty'));
+      state = CreateProfileState.error('Name can\'t be empty');
       return false;
     }
     final nameExists = await localDB.profileExistsWithName(name);
     if (nameExists) {
-      emit(const CreateProfileState.error('Name already taken'));
+      state = CreateProfileState.error('Name already taken');
       return false;
     }
     final id = Uuid().v1();
-    emit(const CreateProfileState.loading());
+    state = CreateProfileState.loading();
     try {
       await localDB.createProfile(Profile(name: name, id: id));
-      emit(const CreateProfileState.success());
+      state = CreateProfileState.success();
     } catch (e) {
-      emit(CreateProfileState.error(e.toString()));
+      state = CreateProfileState.error(e.toString());
     }
     return true;
   }

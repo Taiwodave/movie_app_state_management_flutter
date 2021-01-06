@@ -22,6 +22,12 @@
             "type": "dart"
         },
         {
+            "name": "riverpod",
+            "cwd": "apps/riverpod",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
             "name": "models",
             "cwd": "packages/models",
             "request": "launch",
