@@ -28,11 +28,4 @@ class MyApp extends StatelessWidget {
       home: ProfilesSelectionPage(), //buildNowPlaying(),
     );
   }
-
-  Widget buildNowPlaying() {
-    return BlocProvider<MoviesCubit>(
-      create: (_) => MoviesCubit(api: TMDBClient()),
-      child: NowPlayingPage(),
-    );
-  }
 }

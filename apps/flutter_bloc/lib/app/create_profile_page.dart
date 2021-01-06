@@ -1,10 +1,21 @@
-import 'package:core/models/profile.dart';
 import 'package:core/persistence/local_db.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:uuid/uuid.dart';
+import 'package:tmdb_flutter_bloc_demo/blocs/create_profile/create_profile_cubit.dart';
+import 'package:tmdb_flutter_bloc_demo/blocs/create_profile/create_profile_state.dart';
 
 class CreateProfilePage extends StatefulWidget {
+  static Widget create(BuildContext context) {
+    final localDB = RepositoryProvider.of<LocalDB>(context);
+    return BlocProvider<CreateProfileCubit>(
+      create: (_) => CreateProfileCubit(
+        localDB: localDB,
+        navigatorState: Navigator.of(context),
+      ),
+      child: CreateProfilePage(),
+    );
+  }
+
   @override
   _CreateProfilePageState createState() => _CreateProfilePageState();
 }
@@ -13,43 +24,37 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
   final controller = TextEditingController();
   String _errorText;
 
+  // Should be a bloc
   Future<void> createProfile(String name) async {
-    if (name.isEmpty) {
-      setState(() => _errorText = 'Name can\'t be empty');
-      return;
-    }
-    final localDB = RepositoryProvider.of<LocalDB>(context);
-    final nameExists = await localDB.profileExistsWithName(name);
-    if (nameExists) {
-      setState(() => _errorText = 'Name already taken');
-      return;
-    }
-    final id = Uuid().v1();
-    await localDB.createProfile(Profile(name: name, id: id));
-    Navigator.of(context).pop();
+    final cubit = BlocProvider.of<CreateProfileCubit>(context);
+    await cubit.createProfile(name);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Create Profile'),
-        actions: [
-          FlatButton(
-            onPressed: () => createProfile(controller.value.text),
-            child: const Text('Save'),
-          )
-        ],
-      ),
-      body: Container(
-        padding: const EdgeInsets.all(32.0),
-        alignment: Alignment.center,
-        child: ProfileNameInput(
-          controller: controller,
-          errorText: _errorText,
-          onSubmitted: (value) => createProfile(value),
-        ),
-      ),
+    return BlocBuilder<CreateProfileCubit, CreateProfileState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Create Profile'),
+            actions: [
+              FlatButton(
+                onPressed: () => createProfile(controller.value.text),
+                child: const Text('Save'),
+              )
+            ],
+          ),
+          body: Container(
+            padding: const EdgeInsets.all(32.0),
+            alignment: Alignment.center,
+            child: ProfileNameInput(
+              controller: controller,
+              errorText: _errorText,
+              onSubmitted: (value) => createProfile(value),
+            ),
+          ),
+        );
+      },
     );
   }
 }

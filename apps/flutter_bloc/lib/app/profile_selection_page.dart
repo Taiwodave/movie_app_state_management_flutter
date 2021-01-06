@@ -21,7 +21,7 @@ class ProfilesGrid extends StatelessWidget {
     await Navigator.of(context).push<void>(
       MaterialPageRoute(
         fullscreenDialog: true,
-        builder: (_) => CreateProfilePage(),
+        builder: (_) => CreateProfilePage.create(context),
       ),
     );
   }
