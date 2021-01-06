@@ -68,35 +68,35 @@ class Profile {
   int get hashCode => id.hashCode ^ name.hashCode;
 }
 
-class Profiles {
-  final Map<String, Profile> values;
-  Profiles({@required this.values});
+class ProfilesData {
+  final Map<String, Profile> profiles;
+  ProfilesData({@required this.profiles});
 
-  factory Profiles.fromMap(Map<String, dynamic> map) {
+  factory ProfilesData.fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
-    return Profiles(
-        values: map.map((key, value) => MapEntry<String, Profile>(
+    return ProfilesData(
+        profiles: map.map((key, value) => MapEntry<String, Profile>(
               key,
               Profile.fromJson(value),
             )));
   }
 
-  String toJson() => json.encode(values);
+  String toJson() => json.encode(profiles);
 
-  factory Profiles.fromJson(String source) =>
-      Profiles.fromMap(json.decode(source));
+  factory ProfilesData.fromJson(String source) =>
+      ProfilesData.fromMap(json.decode(source));
 
   @override
-  String toString() => 'Profiles(values: $values)';
+  String toString() => 'Profiles(profiles: $profiles)';
 
   @override
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
     final mapEquals = const DeepCollectionEquality().equals;
 
-    return o is Profiles && mapEquals(o.values, values);
+    return o is ProfilesData && mapEquals(o.profiles, profiles);
   }
 
   @override
-  int get hashCode => values.hashCode;
+  int get hashCode => profiles.hashCode;
 }

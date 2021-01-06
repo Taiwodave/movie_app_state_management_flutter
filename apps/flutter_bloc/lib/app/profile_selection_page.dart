@@ -1,4 +1,5 @@
 import 'package:core/models/profile.dart';
+import 'package:core/models/profiles_data.dart';
 import 'package:core/persistence/local_db.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,11 +30,11 @@ class ProfilesGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final localDB = RepositoryProvider.of<LocalDB>(context);
-    return StreamBuilder<Profiles>(
+    return StreamBuilder<ProfilesData>(
       stream: localDB.profiles(),
       builder: (_, snapshot) {
         final List<Profile> profiles =
-            snapshot.hasData ? snapshot.data.values.values.toList() : [];
+            snapshot.hasData ? snapshot.data.profiles.values.toList() : [];
         final screenSize = MediaQuery.of(context).size;
         return Padding(
           padding: const EdgeInsets.all(16.0),
