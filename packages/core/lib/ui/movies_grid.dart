@@ -20,7 +20,12 @@ class MoviesGrid extends StatelessWidget {
       itemCount: movies.length,
       itemBuilder: (context, index) {
         final movie = movies[index];
-        return DebugPosterTile(imagePath: movie.posterPath, debugIndex: index);
+        return PosterTile(
+          imagePath: movie.posterPath,
+          //debugIndex: index,
+          isFavourite: false,
+          onFavouriteChanged: (isFavourite) => print(isFavourite),
+        );
       },
       controller: controller,
     );
