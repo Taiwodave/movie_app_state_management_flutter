@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:core/persistence/local_db.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:tmdb_flutter_bloc_demo/app/app_startup/app_startup_page.dart';
+import 'package:movie_app_demo_flutter_bloc/app/app_startup/app_startup_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

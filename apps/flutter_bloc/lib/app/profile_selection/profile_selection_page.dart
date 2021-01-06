@@ -3,7 +3,7 @@ import 'package:core/models/profile/profiles_data.dart';
 import 'package:core/persistence/local_db.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmdb_flutter_bloc_demo/app/create_profile/create_profile_page_builder.dart';
+import 'package:movie_app_demo_flutter_bloc/app/create_profile/create_profile_page_builder.dart';
 
 class ProfileSelectionPage extends StatelessWidget {
   Future<void> addProfile(BuildContext context) async {

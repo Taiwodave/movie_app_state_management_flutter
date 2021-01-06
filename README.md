@@ -1,12 +1,20 @@
 ## Flutter State Management: Movie App with Provider, Riverpod, flutter_bloc 
 
+Title
+tmdb_flutter_bloc_demo
+
+movie_app_demo_flutter_bloc
+movie_app_demo_riverpod
+movie_app_demo_provider
+
 - [x] flutter_bloc project
 - [x] pagination
 - [x] freezed for models
 - [x] freezed for cubit states
 - [x] User profiles
 - [x] Selected user profile
-- [ ] Bottom tabs
+- [x] Bottom tabs
+- [x] Move all models to core package
 
 ## Features
 
