@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 import 'api_keys.dart';
 
-import '../models/tmdb_movies_response.dart';
+import '../models/tmdb/tmdb_movies_response.dart';
 
 enum PosterSize {
   w92,

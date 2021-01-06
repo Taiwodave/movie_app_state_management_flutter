@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/tmdb_movie_basic.dart';
+import '../models/tmdb/tmdb_movie_basic.dart';
 import '../ui/poster_tile.dart';
 
 class MoviesGrid extends StatelessWidget {

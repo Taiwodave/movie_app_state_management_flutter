@@ -1,5 +1,5 @@
-import 'package:core/models/profile.dart';
-import 'package:core/models/profiles_data.dart';
+import 'package:core/models/profile/profile.dart';
+import 'package:core/models/profile/profiles_data.dart';
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 

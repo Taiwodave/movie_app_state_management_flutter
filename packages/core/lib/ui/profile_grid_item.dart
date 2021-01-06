@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/profile.dart';
+import '../models/profile/profile.dart';
 
 class ProfileGridItem extends StatelessWidget {
   const ProfileGridItem(

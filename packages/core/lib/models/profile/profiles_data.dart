@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-import 'package:core/models/profile.dart';
+import 'profile.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 class ProfilesData {

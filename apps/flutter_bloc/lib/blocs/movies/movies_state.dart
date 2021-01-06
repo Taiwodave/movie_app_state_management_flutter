@@ -1,4 +1,4 @@
-import 'package:core/models/tmdb_movie_basic.dart';
+import 'package:core/models/tmdb/tmdb_movie_basic.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
