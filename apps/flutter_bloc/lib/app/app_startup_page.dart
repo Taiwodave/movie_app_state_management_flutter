@@ -8,6 +8,7 @@ import 'package:tmdb_flutter_bloc_demo/blocs/app_startup/app_startup_state.dart'
 
 /// This is the "root" widget of the app, which sits just below MaterialApp.
 /// It performs app-state initialization and returns the appropriate page.
+// TODO: Implement with other state management techniques
 class AppStartupPage extends StatelessWidget {
   static Widget create(BuildContext context) {
     final localDB = RepositoryProvider.of<LocalDB>(context);
