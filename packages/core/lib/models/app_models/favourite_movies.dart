@@ -12,8 +12,8 @@ class FavouriteMovies {
   String toJson() => json.encode(favouriteIDs.toList());
 
   factory FavouriteMovies.fromJson(String source) {
-    final list = json.decode(source) as List<int>;
-    return FavouriteMovies(favouriteIDs: Set.from(list));
+    final list = json.decode(source);
+    return FavouriteMovies(favouriteIDs: Set<int>.from(list));
   }
 
   @override

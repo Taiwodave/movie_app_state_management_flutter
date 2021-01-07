@@ -16,9 +16,9 @@ abstract class DataStore {
 
   /// Movies
   Future<void> storeMovie(TMDBMovieBasic movie);
-  Future<void> addFavouriteMovie(
-      {@required Profile profile, @required TMDBMovieBasic movie});
-  Future<void> removeFavouriteMovie(
-      {@required Profile profile, @required TMDBMovieBasic movie});
-  Stream<FavouriteMovies> favouriteMovies(Profile profile);
+  Future<void> setFavouriteMovie(
+      {@required String profileId,
+      @required TMDBMovieBasic movie,
+      @required bool isFavourite});
+  Stream<FavouriteMovies> favouriteMovies(String profileId);
 }

@@ -12,6 +12,7 @@
 - [x] Move all models to core package
 - [x] Create riverpod project (work out shared parts)
 - [ ] Movie favourites (per profile)
+  - Read profile favourites inside movies list (should I read each favourite as a document?)
 
 ## Supported state management solutions
 

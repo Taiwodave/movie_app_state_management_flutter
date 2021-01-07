@@ -1,8 +1,8 @@
 import 'package:core/api/tmdb_api.dart';
 import 'package:flutter/material.dart';
-import 'package:core/ui/movies_grid.dart';
 import 'package:core/ui/scrollable_movies_page_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:movie_app_demo_riverpod/app/now_playing/favourite_movies_grid.dart';
 import 'package:movie_app_demo_riverpod/app/now_playing/now_playing_model.dart';
 
 final moviesModelProvider = StateNotifierProvider<NowPlayingModel>(
@@ -21,7 +21,7 @@ class NowPlayingPage extends StatelessWidget {
           builder: (context, watch, _) {
             final state = watch(moviesModelProvider.state);
             return state.when(
-              data: (movies, _) => MoviesGrid(
+              data: (movies, _) => FavouritesMovieGrid(
                 movies: movies,
                 controller: controller,
               ),
@@ -30,7 +30,7 @@ class NowPlayingPage extends StatelessWidget {
                     ? const Center(
                         child: CircularProgressIndicator(),
                       )
-                    : MoviesGrid(
+                    : FavouritesMovieGrid(
                         movies: movies,
                         controller: controller,
                       );

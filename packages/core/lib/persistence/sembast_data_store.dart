@@ -91,43 +91,41 @@ class SembastDataStore implements DataStore {
     }
   }
 
-  Future<void> addFavouriteMovie(
-      {@required Profile profile, @required TMDBMovieBasic movie}) async {
+  Future<void> setFavouriteMovie(
+      {@required String profileId,
+      @required TMDBMovieBasic movie,
+      @required bool isFavourite}) async {
     final favouritesJson =
-        await store.record('favourites/${profile.id}').get(db) as String;
+        await store.record('favourites/$profileId').get(db) as String;
     if (favouritesJson != null) {
       final favouriteMovies = FavouriteMovies.fromJson(favouritesJson);
-      if (!favouriteMovies.favouriteIDs.contains(movie.id)) {
-        favouriteMovies.favouriteIDs.add(movie.id);
-        await store
-            .record('favourites/${profile.id}')
-            .put(db, favouriteMovies.toJson());
+      if (isFavourite) {
+        if (!favouriteMovies.favouriteIDs.contains(movie.id)) {
+          favouriteMovies.favouriteIDs.add(movie.id);
+          await store
+              .record('favourites/$profileId')
+              .put(db, favouriteMovies.toJson());
+        }
+      } else {
+        if (favouriteMovies.favouriteIDs.contains(movie.id)) {
+          favouriteMovies.favouriteIDs.remove(movie.id);
+          await store
+              .record('favourites/$profileId')
+              .put(db, favouriteMovies.toJson());
+        }
       }
     } else {
-      final favouriteMovies = FavouriteMovies(favouriteIDs: {movie.id});
-      await store
-          .record('favourites/${profile.id}')
-          .put(db, favouriteMovies.toJson());
-    }
-  }
-
-  Future<void> removeFavouriteMovie(
-      {@required Profile profile, @required TMDBMovieBasic movie}) async {
-    final favouritesJson =
-        await store.record('favourites/${profile.id}').get(db) as String;
-    if (favouritesJson != null) {
-      final favouriteMovies = FavouriteMovies.fromJson(favouritesJson);
-      if (favouriteMovies.favouriteIDs.contains(movie.id)) {
-        favouriteMovies.favouriteIDs.remove(movie.id);
+      if (isFavourite) {
+        final favouriteMovies = FavouriteMovies(favouriteIDs: {movie.id});
         await store
-            .record('favourites/${profile.id}')
+            .record('favourites/$profileId')
             .put(db, favouriteMovies.toJson());
       }
     }
   }
 
-  Stream<FavouriteMovies> favouriteMovies(Profile profile) {
-    final record = store.record('favourites/${profile.id}');
+  Stream<FavouriteMovies> favouriteMovies(String profileId) {
+    final record = store.record('favourites/$profileId');
     return record.onSnapshot(db).map((snapshot) => snapshot != null
         ? FavouriteMovies.fromJson(snapshot.value)
         : FavouriteMovies());
