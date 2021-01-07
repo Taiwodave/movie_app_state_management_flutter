@@ -2,54 +2,23 @@
 
 
 
-- [x] flutter_bloc project
-- [x] pagination
-- [x] freezed for models
-- [x] freezed for cubit states
-- [x] User profiles
-- [x] Selected user profile
-- [x] Bottom tabs
-- [x] Move all models to core package
-- [x] Create riverpod project (work out shared parts)
-- [ ] Movie favourites (per profile)
-  - Read profile favourites inside movies list (should I read each favourite as a document?)
+## Features
+
+- Now Playing movies (with pagination)
+- Save favourites to watch list
+- Multiple profiles (like Netflix)
+- Local data persistence (movies, favourites, profiles) with Sembast
+
+## Bugs
+
+- List reloads from top after a page is added
 
 ## Supported state management solutions
 
-- [x] Riverpod
-- [x] flutter_bloc (cubit actually)
+- [x] Riverpod (using `StateNotifier`)
+- [x] flutter_bloc (using `Cubit`)
 - [ ] Provider
 
-
-### User profiles
-
-When app starts: Default profile
-
-Can be done with a grid
-
-Profile has a 
-- name
-- ID
-
-Storage:
-- list of profiles
-- list of movies
-
-Each time a movie is favourited:
-
-- Store it with its id
-- Add to the list of movie IDs for that user
-
-This IS relational
-
-Query:
-
-- Show current favourites for given user
-- SELECT * FROM movies WHERE id IN userFavorites
-
-Saved movies can be serialized to JSON and saved to disk
-
-- And need to be queried by ID
 
 
 ## Note: Loading images from insecure HTTP endpoints
