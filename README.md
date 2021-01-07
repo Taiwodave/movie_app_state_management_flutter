@@ -1,4 +1,4 @@
-## Flutter State Management: Movie App with Provider, Riverpod, flutter_bloc 
+# Flutter State Management: Movie App with Provider, Riverpod, flutter_bloc 
 
 This is a reference project showing how to implement a (Netflix-inspired) movie app with different state management techniques in Flutter:
 
@@ -6,7 +6,7 @@ This is a reference project showing how to implement a (Netflix-inspired) movie 
 
 The project uses the [TMDB API](https://www.themoviedb.org/documentation/api) to fetch a list of currently playing movies, and includes features such as pagination and local storage.
 
-## Running the project
+### Running the project
 
 See [Getting a TMDB API key](#getting-a-tmdb-api-key) instructions below before running.
 
@@ -118,7 +118,7 @@ Once you have this, create an `api_keys.dart` file inside `packages/core/lib/api
 String tmdbApiKey = "your-api-key";
 ```
 
-Once you have done that, you're good to go.
+Congratulations, you're good to go. 😎
 
 ## Note: Loading images from insecure HTTP endpoints
 
