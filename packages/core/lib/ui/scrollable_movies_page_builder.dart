@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 
 class ScrollableMoviesPageBuilder extends StatefulWidget {
   const ScrollableMoviesPageBuilder(
-      {Key key, @required this.builder, this.onNextPageRequested})
+      {Key key,
+      @required this.title,
+      @required this.builder,
+      this.onNextPageRequested})
       : super(key: key);
+  final String title;
   final Function(BuildContext, ScrollController) builder;
   final VoidCallback onNextPageRequested;
 
@@ -41,7 +45,7 @@ class _ScrollableMoviesPageBuilderState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Now Playing'),
+        title: Text(widget.title),
       ),
       body: widget.builder(context, _scrollController),
       backgroundColor: Colors.black,

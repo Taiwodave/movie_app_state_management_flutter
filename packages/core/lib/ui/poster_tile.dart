@@ -30,11 +30,12 @@ class PosterTile extends StatelessWidget {
               style: const TextStyle(color: Colors.white, fontSize: 14),
             ),
           ),
-        Positioned(
-          right: 0,
-          top: 0,
-          child: favouriteBuilder(context),
-        ),
+        if (favouriteBuilder != null)
+          Positioned(
+            right: 0,
+            top: 0,
+            child: favouriteBuilder(context),
+          ),
       ],
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum TabItem { nowPlaying, profiles }
+enum TabItem { nowPlaying, favourites, profiles }
 
 class HomeNavigationBuilder extends StatefulWidget {
   const HomeNavigationBuilder({Key key, this.builder}) : super(key: key);
@@ -11,6 +11,7 @@ class HomeNavigationBuilder extends StatefulWidget {
 }
 
 class _HomeNavigationBuilderState extends State<HomeNavigationBuilder> {
+  // TODO: Move this state into a provider that can be set when a profile is selected
   TabItem _currentTab = TabItem.nowPlaying;
 
   @override
@@ -35,10 +36,15 @@ class BottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
+      currentIndex: currentTab.index,
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.stacked_bar_chart),
           label: 'Now Playing',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.favorite),
+          label: 'Favourites',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.directions_railway),

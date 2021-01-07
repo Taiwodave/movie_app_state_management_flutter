@@ -21,7 +21,7 @@ class ProfilesData {
   }
 
   factory ProfilesData.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
+    if (map == null || map['profiles'] == null) return ProfilesData();
 
     final profilesMap = map['profiles'] as Map<String, dynamic>;
     final profiles = profilesMap.map((key, value) => MapEntry<String, Profile>(

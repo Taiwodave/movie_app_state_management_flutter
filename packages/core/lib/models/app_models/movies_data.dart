@@ -9,13 +9,18 @@ class MoviesData {
     this.movies,
   });
 
-  Map<int, TMDBMovieBasic> toMap() => movies;
+  Map<String, dynamic> toMap() {
+    return movies.map((key, value) => MapEntry<String, dynamic>(
+          key.toString(),
+          value.toJson(),
+        ));
+  }
 
-  factory MoviesData.fromMap(Map<int, dynamic> map) {
+  factory MoviesData.fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
 
     final movies = map.map((key, value) => MapEntry<int, TMDBMovieBasic>(
-          key,
+          int.parse(key),
           TMDBMovieBasic.fromJson(value),
         ));
 

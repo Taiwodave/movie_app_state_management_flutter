@@ -12,6 +12,7 @@ class NowPlayingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScrollableMoviesPageBuilder(
+      title: 'Now Playing',
       onNextPageRequested: () {
         final moviesModel = context.read(moviesModelProvider);
         moviesModel.fetchNextPage();

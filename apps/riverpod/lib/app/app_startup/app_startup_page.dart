@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:core/ui/home_navigation_builder.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:movie_app_demo_riverpod/app/favourites/favourites_page.dart';
 import 'package:movie_app_demo_riverpod/app/now_playing/now_playing_page.dart';
 import 'package:movie_app_demo_riverpod/app/profile_selection/profile_selection_page.dart';
 import 'package:movie_app_demo_riverpod/top_level_providers.dart';
@@ -28,6 +29,8 @@ class AppStartupPage extends ConsumerWidget {
         builder: (context, tabItem) {
           if (tabItem == TabItem.nowPlaying) {
             return NowPlayingPage();
+          } else if (tabItem == TabItem.favourites) {
+            return FavouritesPage();
           } else {
             return ProfileSelectionPage();
           }

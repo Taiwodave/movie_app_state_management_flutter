@@ -9,9 +9,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Initialize DB
   final appDocDir = await getApplicationDocumentsDirectory();
-  // sembast.db: Andrea, Chiara, Lisa
   final dataStore =
-      await SembastDataStore.init('${appDocDir.path}/sembast2.db');
+      await SembastDataStore.init('${appDocDir.path}/sembast5.db');
   runApp(ProviderScope(
     overrides: [
       dataStoreProvider.overrideWithValue(dataStore),

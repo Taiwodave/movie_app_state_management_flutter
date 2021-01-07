@@ -7,7 +7,7 @@ class MoviesGrid extends StatelessWidget {
   const MoviesGrid({
     Key key,
     @required this.movies,
-    @required this.controller,
+    this.controller,
     this.favouriteBuilder,
   }) : super(key: key);
   final List<TMDBMovieBasic> movies;
@@ -30,7 +30,9 @@ class MoviesGrid extends StatelessWidget {
         return PosterTile(
           imagePath: movie.posterPath,
           //debugIndex: index,
-          favouriteBuilder: (context) => favouriteBuilder(context, movie),
+          favouriteBuilder: favouriteBuilder != null
+              ? (context) => favouriteBuilder(context, movie)
+              : null,
         );
       },
       controller: controller,
