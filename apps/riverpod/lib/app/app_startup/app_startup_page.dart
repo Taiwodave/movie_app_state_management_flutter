@@ -25,7 +25,7 @@ class AppStartupPage extends ConsumerWidget {
     return state.when(
       initializing: () => const Center(child: CircularProgressIndicator()),
       needsProfile: () => ProfileSelectionPage(),
-      profileLoaded: (profileData) => HomeNavigationBuilder(
+      profileLoaded: (profilesData) => HomeNavigationBuilder(
         builder: (context, tabItem) {
           if (tabItem == TabItem.nowPlaying) {
             return NowPlayingPage();
