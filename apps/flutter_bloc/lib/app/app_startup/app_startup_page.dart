@@ -3,10 +3,10 @@ import 'package:core/persistence/data_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core/ui/home_navigation_builder.dart';
-import 'package:movie_app_demo_flutter_bloc/app/app_startup/app_startup_cubit.dart';
-import 'package:movie_app_demo_flutter_bloc/app/favourites/favourites_page.dart';
-import 'package:movie_app_demo_flutter_bloc/app/now_playing/now_playing_page.dart';
-import 'package:movie_app_demo_flutter_bloc/app/profile_selection/profile_selection_page.dart';
+import 'package:movie_app_demo_flutter/app/app_startup/app_startup_cubit.dart';
+import 'package:movie_app_demo_flutter/app/favourites/favourites_page.dart';
+import 'package:movie_app_demo_flutter/app/now_playing/now_playing_page.dart';
+import 'package:movie_app_demo_flutter/app/profile_selection/profile_selection_page.dart';
 import 'package:core/models/app_state/app_startup_state.dart';
 
 /// This is the "root" widget of the app, which sits just below MaterialApp.

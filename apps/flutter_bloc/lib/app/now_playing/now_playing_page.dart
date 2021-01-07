@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core/models/app_state/now_playing_state.dart';
 import 'package:core/ui/movies_grid.dart';
 import 'package:core/ui/scrollable_movies_page_builder.dart';
-import 'package:movie_app_demo_flutter_bloc/app/now_playing/favourite_movies_grid.dart';
-import 'package:movie_app_demo_flutter_bloc/app/now_playing/now_playing_cubit.dart';
+import 'package:movie_app_demo_flutter/app/now_playing/favourite_movies_grid.dart';
+import 'package:movie_app_demo_flutter/app/now_playing/now_playing_cubit.dart';
 
 class NowPlayingPage extends StatelessWidget {
   static Widget create(BuildContext context) {

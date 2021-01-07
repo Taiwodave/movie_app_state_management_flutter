@@ -3,7 +3,7 @@ import 'package:core/ui/movies_grid.dart';
 import 'package:core/ui/scrollable_movies_page_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:movie_app_demo_riverpod/top_level_providers.dart';
+import 'package:movie_app_demo_flutter/top_level_providers.dart';
 import 'package:rxdart/rxdart.dart';
 
 final profileFavouriteMoviesProvider =

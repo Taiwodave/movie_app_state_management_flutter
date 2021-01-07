@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:core/ui/create_profile_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:movie_app_demo_riverpod/app/create_profile/create_profile_model.dart';
-import 'package:movie_app_demo_riverpod/top_level_providers.dart';
+import 'package:movie_app_demo_flutter/app/create_profile/create_profile_model.dart';
+import 'package:movie_app_demo_flutter/top_level_providers.dart';
 
 final createProfileModelProvider =
     StateNotifierProvider<CreateProfileModel>((ref) {

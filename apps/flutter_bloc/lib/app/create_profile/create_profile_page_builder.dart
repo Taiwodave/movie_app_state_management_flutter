@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core/models/app_state/create_profile_state.dart';
 import 'package:core/ui/create_profile_page.dart';
-import 'package:movie_app_demo_flutter_bloc/app/create_profile/create_profile_cubit.dart';
+import 'package:movie_app_demo_flutter/app/create_profile/create_profile_cubit.dart';
 
 class CreateProfilePageBuilder extends StatelessWidget {
   static Widget create(BuildContext context) {

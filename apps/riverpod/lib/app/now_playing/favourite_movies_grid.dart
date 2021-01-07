@@ -3,7 +3,7 @@ import 'package:core/ui/movies_grid.dart';
 import 'package:core/ui/favourite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:movie_app_demo_riverpod/top_level_providers.dart';
+import 'package:movie_app_demo_flutter/top_level_providers.dart';
 
 final favouriteMovieProvider =
     StreamProvider.autoDispose.family<bool, TMDBMovieBasic>((ref, movie) {

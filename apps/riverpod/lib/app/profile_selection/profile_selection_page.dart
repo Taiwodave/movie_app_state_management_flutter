@@ -1,8 +1,8 @@
 import 'package:core/ui/profiles_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:movie_app_demo_riverpod/app/create_profile/create_profile_page_builder.dart';
-import 'package:movie_app_demo_riverpod/top_level_providers.dart';
+import 'package:movie_app_demo_flutter/app/create_profile/create_profile_page_builder.dart';
+import 'package:movie_app_demo_flutter/top_level_providers.dart';
 
 class ProfileSelectionPage extends ConsumerWidget {
   Future<void> addProfile(BuildContext context) async {
