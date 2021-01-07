@@ -6,6 +6,10 @@ This is a reference project showing how to implement a (Netflix-inspired) movie 
 
 The project uses the [TMDB API](https://www.themoviedb.org/documentation/api) to fetch a list of currently playing movies, and includes features such as pagination and local storage.
 
+## Running the project
+
+See [Getting a TMDB API key](#getting-a-tmdb-api-key) instructions below before running.
+
 ## App Overview
 
 The application is composed by three primary screens: **Now Playing**, **Favourites** and **Profiles**.
@@ -52,7 +56,7 @@ The project folders are structured like this:
       /ui
 ```
 
-Each folder inside `apps` is a Flutter that project that implements the same app with a specific state management package.
+Each folder inside `apps` is a Flutter project that implements the same app with a specific state management package.
 
 All common functionality lives in `packages/core`. This includes a TMDB API wrapper, along with model classes with supporting serialization code where needed.
 
@@ -152,5 +156,9 @@ Add the following to `ios/Runner/info.pList`:
 More information here:
 
 - [Insecure HTTP connections are disabled by default on iOS and Android.](https://flutter.dev/docs/release/breaking-changes/network-policy-ios-android)
+
+## Credits
+
+This project was inspired by [flutter\_architecture\_samples](https://github.com/brianegan/flutter_architecture_samples) by the Flutter community.
 
 ## [LICENSE: MIT](LICENSE.md)
