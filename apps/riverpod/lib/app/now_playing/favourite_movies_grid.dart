@@ -28,6 +28,9 @@ class FavouritesMovieGrid extends ConsumerWidget {
     final profilesData = watch(profilesDataProvider);
     final favouriteMovies = watch(favouriteMoviesProvider);
     print(favouriteMovies);
+    // this will reload all movies when a favourite changes.
+    // Better: load values 1 by one with FutureBuilder
+    // That way I don't show UI until loaded
     return favouriteMovies.when(
       data: (favourites) => MoviesGrid(
         movies: movies,
@@ -45,6 +48,7 @@ class FavouritesMovieGrid extends ConsumerWidget {
       loading: () => MoviesGrid(
         movies: movies,
         controller: controller,
+        // TODO: Favourite button builder
       ),
       error: (_, __) => MoviesGrid(
         movies: movies,

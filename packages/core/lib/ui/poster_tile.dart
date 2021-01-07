@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:core/api/tmdb_api.dart';
 import 'package:transparent_image/transparent_image.dart';
 
+// TODO: Add Favourite Button builder
 class PosterTile extends StatelessWidget {
   const PosterTile({
     @required this.imagePath,
