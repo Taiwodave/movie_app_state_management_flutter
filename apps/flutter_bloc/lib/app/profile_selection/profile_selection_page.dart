@@ -1,5 +1,5 @@
 import 'package:core/ui/profiles_grid.dart';
-import 'package:core/models/profile/profiles_data.dart';
+import 'package:core/models/app_models/profiles_data.dart';
 import 'package:core/persistence/data_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

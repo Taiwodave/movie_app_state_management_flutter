@@ -1,4 +1,4 @@
-import 'package:core/models/profile/profiles_data.dart';
+import 'package:core/models/app_models/profiles_data.dart';
 import 'package:flutter/material.dart';
 import 'package:core/ui/home_navigation_builder.dart';
 

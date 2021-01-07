@@ -1,4 +1,4 @@
-import 'package:core/models/profile/profile.dart';
+import 'package:core/models/app_models/profile.dart';
 import 'package:core/persistence/data_store.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

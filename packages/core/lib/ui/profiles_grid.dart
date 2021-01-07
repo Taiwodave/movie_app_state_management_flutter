@@ -1,5 +1,5 @@
-import '../models/profile/profiles_data.dart';
-import '../models/profile/profile.dart';
+import '../models/app_models/profiles_data.dart';
+import '../models/app_models/profile.dart';
 import 'add_profile_button.dart';
 import 'profile_grid_item.dart';
 import 'package:flutter/material.dart';

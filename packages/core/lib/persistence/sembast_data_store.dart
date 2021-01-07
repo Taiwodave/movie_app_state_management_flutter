@@ -1,8 +1,12 @@
-import 'package:core/models/profile/profile.dart';
-import 'package:core/models/profile/profiles_data.dart';
-import 'package:core/persistence/data_store.dart';
+import 'package:core/models/app_models/favourite_movies.dart';
+import 'package:flutter/foundation.dart';
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
+import '../models/app_models/profile.dart';
+import '../models/app_models/profiles_data.dart';
+import '../models/app_models/movies_data.dart';
+import '../models/tmdb/tmdb_movie_basic.dart';
+import 'data_store.dart';
 
 /// Data store implementation using Sembast (local NoSQL database)
 class SembastDataStore implements DataStore {
@@ -16,6 +20,8 @@ class SembastDataStore implements DataStore {
         // We use the database factory to open the database
         await dbFactory.openDatabase(dbPath),
       );
+
+  /// Profile methods
 
   Future<void> createProfile(Profile profile) async {
     final profilesJson = await store.record('profiles').get(db) as String;
@@ -66,5 +72,64 @@ class SembastDataStore implements DataStore {
     final allNames =
         profiles.profiles.values.map((profile) => profile.name).toList();
     return allNames.contains(name);
+  }
+
+  /// Movies methods
+
+  Future<void> storeMovie(TMDBMovieBasic movie) async {
+    final moviesJson = await store.record('movies').get(db) as String;
+    if (moviesJson != null) {
+      final moviesData = MoviesData.fromJson(moviesJson);
+      // only save movie to store if it hasn't been saved before
+      if (moviesData.movies[movie.id] == null) {
+        moviesData.movies[movie.id] = movie;
+        await store.record('profiles').put(db, moviesData.toJson());
+      }
+    } else {
+      final moviesData = MoviesData(movies: {movie.id: movie});
+      await store.record('profiles').put(db, moviesData.toJson());
+    }
+  }
+
+  Future<void> addFavouriteMovie(
+      {@required Profile profile, @required TMDBMovieBasic movie}) async {
+    final favouritesJson =
+        await store.record('favourites/${profile.id}').get(db) as String;
+    if (favouritesJson != null) {
+      final favouriteMovies = FavouriteMovies.fromJson(favouritesJson);
+      if (!favouriteMovies.favouriteIDs.contains(movie.id)) {
+        favouriteMovies.favouriteIDs.add(movie.id);
+        await store
+            .record('favourites/${profile.id}')
+            .put(db, favouriteMovies.toJson());
+      }
+    } else {
+      final favouriteMovies = FavouriteMovies(favouriteIDs: {movie.id});
+      await store
+          .record('favourites/${profile.id}')
+          .put(db, favouriteMovies.toJson());
+    }
+  }
+
+  Future<void> removeFavouriteMovie(
+      {@required Profile profile, @required TMDBMovieBasic movie}) async {
+    final favouritesJson =
+        await store.record('favourites/${profile.id}').get(db) as String;
+    if (favouritesJson != null) {
+      final favouriteMovies = FavouriteMovies.fromJson(favouritesJson);
+      if (favouriteMovies.favouriteIDs.contains(movie.id)) {
+        favouriteMovies.favouriteIDs.remove(movie.id);
+        await store
+            .record('favourites/${profile.id}')
+            .put(db, favouriteMovies.toJson());
+      }
+    }
+  }
+
+  Stream<FavouriteMovies> favouriteMovies(Profile profile) {
+    final record = store.record('favourites/${profile.id}');
+    return record.onSnapshot(db).map((snapshot) => snapshot != null
+        ? FavouriteMovies.fromJson(snapshot.value)
+        : FavouriteMovies());
   }
 }
