@@ -3,14 +3,11 @@ import 'package:core/persistence/sembast_data_store.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app_demo_flutter/app/app_startup/app_startup_page.dart';
 import 'package:movie_app_demo_flutter/top_level_providers.dart';
-import 'package:path_provider/path_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Initialize DB
-  final appDocDir = await getApplicationDocumentsDirectory();
-  final dataStore =
-      await SembastDataStore.init('${appDocDir.path}/sembast5.db');
+  // Initialize data store
+  final dataStore = await SembastDataStore.makeDefault();
   runApp(ProviderScope(
     overrides: [
       dataStoreProvider.overrideWithValue(dataStore),

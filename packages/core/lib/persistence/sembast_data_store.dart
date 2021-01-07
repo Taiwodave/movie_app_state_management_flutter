@@ -1,5 +1,6 @@
 import 'package:core/models/app_models/favourite_movies.dart';
 import 'package:flutter/foundation.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 import '../models/app_models/profile.dart';
@@ -24,6 +25,16 @@ class SembastDataStore implements DataStore {
   final Database db;
   final store = StoreRef.main();
 
+  // Create data store on predefined location
+  static Future<SembastDataStore> makeDefault() async {
+    final appDocDir = await getApplicationDocumentsDirectory();
+    return SembastDataStore(
+      // We use the database factory to open the database
+      await dbFactory.openDatabase('${appDocDir.path}/default.db'),
+    );
+  }
+
+  // Create data store on custom location
   static Future<SembastDataStore> init(String dbPath) async => SembastDataStore(
         // We use the database factory to open the database
         await dbFactory.openDatabase(dbPath),
