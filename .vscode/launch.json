@@ -5,17 +5,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "movie_app_demo",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "vanilla",
-            "cwd": "apps/vanilla",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
             "name": "flutter_bloc",
             "cwd": "apps/flutter_bloc",
             "request": "launch",
@@ -27,11 +16,5 @@
             "request": "launch",
             "type": "dart"
         },
-        {
-            "name": "models",
-            "cwd": "packages/models",
-            "request": "launch",
-            "type": "dart"
-        }
     ]
 }
