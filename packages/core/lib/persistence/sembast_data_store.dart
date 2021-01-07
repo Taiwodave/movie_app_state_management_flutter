@@ -1,4 +1,3 @@
-import 'package:core/models/app_models/favourite_movies.dart';
 import 'package:flutter/foundation.dart';
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
@@ -95,39 +94,16 @@ class SembastDataStore implements DataStore {
       {@required String profileId,
       @required TMDBMovieBasic movie,
       @required bool isFavourite}) async {
-    final favouritesJson =
-        await store.record('favourites/$profileId').get(db) as String;
-    if (favouritesJson != null) {
-      final favouriteMovies = FavouriteMovies.fromJson(favouritesJson);
-      if (isFavourite) {
-        if (!favouriteMovies.favouriteIDs.contains(movie.id)) {
-          favouriteMovies.favouriteIDs.add(movie.id);
-          await store
-              .record('favourites/$profileId')
-              .put(db, favouriteMovies.toJson());
-        }
-      } else {
-        if (favouriteMovies.favouriteIDs.contains(movie.id)) {
-          favouriteMovies.favouriteIDs.remove(movie.id);
-          await store
-              .record('favourites/$profileId')
-              .put(db, favouriteMovies.toJson());
-        }
-      }
-    } else {
-      if (isFavourite) {
-        final favouriteMovies = FavouriteMovies(favouriteIDs: {movie.id});
-        await store
-            .record('favourites/$profileId')
-            .put(db, favouriteMovies.toJson());
-      }
-    }
+    await store
+        .record('favourites/$profileId/movie/${movie.id}')
+        .put(db, isFavourite);
   }
 
-  Stream<FavouriteMovies> favouriteMovies(String profileId) {
-    final record = store.record('favourites/$profileId');
-    return record.onSnapshot(db).map((snapshot) => snapshot != null
-        ? FavouriteMovies.fromJson(snapshot.value)
-        : FavouriteMovies());
+  Stream<bool> favouriteMovie(
+      {@required String profileId, @required TMDBMovieBasic movie}) {
+    final record = store.record('favourites/$profileId/movie/${movie.id}');
+    return record
+        .onSnapshot(db)
+        .map((snapshot) => snapshot != null ? snapshot.value : false);
   }
 }

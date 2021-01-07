@@ -8,13 +8,11 @@ class PosterTile extends StatelessWidget {
     @required this.imagePath,
     // debugging hint to show the tile index
     this.debugIndex,
-    @required this.isFavourite,
-    this.onFavouriteChanged,
+    this.favouriteBuilder,
   });
   final String imagePath;
   final int debugIndex;
-  final bool isFavourite;
-  final ValueChanged<bool> onFavouriteChanged;
+  final WidgetBuilder favouriteBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +33,7 @@ class PosterTile extends StatelessWidget {
         Positioned(
           right: 0,
           top: 0,
-          child: _FavouriteButton(
-            isFavourite: isFavourite,
-            onFavouriteChanged: onFavouriteChanged,
-          ),
+          child: favouriteBuilder(context),
         ),
       ],
     );
@@ -60,27 +55,6 @@ class TopGradient extends StatelessWidget {
           end: Alignment.bottomCenter,
           tileMode: TileMode.repeated,
         ),
-      ),
-    );
-  }
-}
-
-class _FavouriteButton extends StatelessWidget {
-  const _FavouriteButton(
-      {Key key, @required this.isFavourite, this.onFavouriteChanged})
-      : super(key: key);
-  final bool isFavourite;
-  final ValueChanged<bool> onFavouriteChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => onFavouriteChanged?.call(!isFavourite),
-      child: Container(
-        width: 36.0,
-        height: 36.0,
-        child: Icon(Icons.favorite,
-            color: isFavourite ? Colors.red : Colors.white),
       ),
     );
   }

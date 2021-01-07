@@ -1,4 +1,3 @@
-import 'package:core/models/app_models/favourite_movies.dart';
 import 'package:core/models/tmdb/tmdb_movie_basic.dart';
 import 'package:flutter/foundation.dart';
 
@@ -20,5 +19,6 @@ abstract class DataStore {
       {@required String profileId,
       @required TMDBMovieBasic movie,
       @required bool isFavourite});
-  Stream<FavouriteMovies> favouriteMovies(String profileId);
+  Stream<bool> favouriteMovie(
+      {@required String profileId, @required TMDBMovieBasic movie});
 }
