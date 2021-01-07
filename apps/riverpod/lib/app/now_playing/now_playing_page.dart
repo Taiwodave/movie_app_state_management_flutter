@@ -9,6 +9,8 @@ final moviesModelProvider = StateNotifierProvider<NowPlayingModel>(
     (ref) => NowPlayingModel(api: TMDBClient()));
 
 class NowPlayingPage extends StatelessWidget {
+  static const moviesGridKey = Key('moviesGrid');
+
   @override
   Widget build(BuildContext context) {
     return ScrollableMoviesPageBuilder(
@@ -23,6 +25,7 @@ class NowPlayingPage extends StatelessWidget {
             final state = watch(moviesModelProvider.state);
             return state.when(
               data: (movies, _) => FavouritesMovieGrid(
+                key: moviesGridKey,
                 movies: movies,
                 controller: controller,
               ),
@@ -32,6 +35,7 @@ class NowPlayingPage extends StatelessWidget {
                         child: CircularProgressIndicator(),
                       )
                     : FavouritesMovieGrid(
+                        key: moviesGridKey,
                         movies: movies,
                         controller: controller,
                       );

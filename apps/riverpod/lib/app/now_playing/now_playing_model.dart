@@ -36,6 +36,7 @@ class NowPlayingModel extends StateNotifier<NowPlayingState> {
     }
 
     _page += 1;
+    print('Fetching page $_page');
     try {
       state = NowPlayingState.dataLoading(_movies);
       final TMDBMoviesResponse result = await api.nowPlayingMovies(page: _page);

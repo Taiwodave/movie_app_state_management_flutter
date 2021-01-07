@@ -2,7 +2,6 @@ import 'package:core/api/tmdb_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core/models/app_state/now_playing_state.dart';
-import 'package:core/ui/movies_grid.dart';
 import 'package:core/ui/scrollable_movies_page_builder.dart';
 import 'package:movie_app_demo_flutter/app/now_playing/favourite_movies_grid.dart';
 import 'package:movie_app_demo_flutter/app/now_playing/now_playing_cubit.dart';
@@ -14,6 +13,8 @@ class NowPlayingPage extends StatelessWidget {
       child: NowPlayingPage(),
     );
   }
+
+  static const moviesGridKey = Key('moviesGrid');
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +29,7 @@ class NowPlayingPage extends StatelessWidget {
           builder: (context, state) {
             return state.when(
               data: (movies, _) => FavouritesMovieGrid(
+                key: moviesGridKey,
                 movies: movies,
                 controller: controller,
               ),
@@ -36,7 +38,8 @@ class NowPlayingPage extends StatelessWidget {
                     ? const Center(
                         child: CircularProgressIndicator(),
                       )
-                    : MoviesGrid(
+                    : FavouritesMovieGrid(
+                        key: moviesGridKey,
                         movies: movies,
                         controller: controller,
                       );
