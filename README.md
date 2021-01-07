@@ -1,14 +1,14 @@
 # Flutter State Management: Movie App with Provider, Riverpod, flutter_bloc 
 
-This is a reference project showing how to implement a (Netflix-inspired) movie app with different state management techniques in Flutter:
+This reference project shows how to implement a (Netflix-inspired) movie app with different state management techniques in Flutter:
 
 ![Movie app preview](media/app-screenshots.png)
 
-The project uses the [TMDB API](https://www.themoviedb.org/documentation/api) to fetch a list of currently playing movies, and includes features such as pagination and local storage.
+The project uses the [TMDB API](https://www.themoviedb.org/documentation/api) to fetch a list of movies, and includes features such as pagination and local storage.
 
 ### Running the project
 
-See [Getting a TMDB API key](#getting-a-tmdb-api-key) instructions below before running.
+Before running, see instructions on how to [get a TMDB API key](#getting-a-tmdb-api-key).
 
 ## App Overview
 
@@ -16,13 +16,13 @@ The application is composed by three primary screens: **Now Playing**, **Favouri
 
 On first launch, the app asks the user to create a profile. 
 
-The **Now Playing** page loads a list of current movies from the TMDB API. This list has a page size of 20 and scrolling to the bottom causes the next page to be loaded (pagination).
+The **Now Playing** page loads a list of current movies from the TMDB API. Results are paginated and scrolling to the bottom causes the next page to be loaded.
 
-Each movie is shown as a poster using the image URL retrieved from the API. The user can tap on the 🤍 icon to add a movie as a favourite (for the selected profile), and this preference is persisted to local disk.
+Each movie shows as a poster using the image URL retrieved from the API. You can tap on the ❤️ icon to add a movie as a favourite (for the selected profile), and this preference is persisted to local disk.
 
-The **Favourites** page shows the list of favourites for the currently selected profile.
+Open the **Favourites** page to see the list of favourites for the currently selected profile.
 
-The **Profiles** page can be used to create additional profiles and update the currently selected profile (this is inspired by the Netflix UI).
+Use the **Profiles** page to create additional profiles and update the currently selected profile (this is inspired by the Netflix UI).
 
 ## Features
 
@@ -31,11 +31,11 @@ The **Profiles** page can be used to create additional profiles and update the c
 - Multiple profiles (like Netflix)
 - Local data persistence (movies, favourites, profiles) with Sembast
 
-The combination of these features makes for an interesting case study on state management in Flutter.
+Combining these features together makes for an interesting case study about state management in Flutter.
 
 ## App Structure
 
-This app was made to compare and contrast multiple state management approaches. To make this possible, a **highly composable** architecture has been designed.
+This app was made to compare and contrast multiple state management approaches. A **highly composable** architecture has been designed to enable this.
 
 The project folders are structured like this:
 
@@ -60,9 +60,9 @@ Each folder inside `apps` is a Flutter project that implements the same app with
 
 All common functionality lives in `packages/core`. This includes a TMDB API wrapper, along with model classes with supporting serialization code where needed.
 
-The `persistence` folder contains a `DataStore` abstract class that is used by all apps, along with a concrete `SembastDataStore` class to read and write data to local storage with the underlying Sembast NoSQL database.
+The `persistence` folder contains a `DataStore` abstract class that is used by all apps, along with a concrete `SembastDataStore` class to read and write data to local storage (using Sembast as a NoSQL database).
 
-The `ui` folder contains all the custom widgets that are shared by all apps. These widgets **do not hold any business logic** and are designed to **show the app UI** and **expose callbacks** for the application code to plug into.
+The `ui` folder contains all the custom widgets that are shared by all apps. These widgets **do not hold any business logic** and are designed to **show the app UI** and **expose callbacks** for the application code to plug into (much like the built-in Flutter widgets).
 
 All the logic lives inside the apps themselves. All apps have exactly the same folders:
 
@@ -76,7 +76,7 @@ lib
     /profile_selection
 ```
 
-The business logic and screen flows are identical for each app, but things are wired up differently depending on which state management solution is used. This makes it easy to compare and constrast different solutions.
+The business logic and screen flows are identical for each app, but the semantics change depending on which state management package is used. This makes it easy to compare and constrast different solutions.
 
 ## Supported state management solutions
 
