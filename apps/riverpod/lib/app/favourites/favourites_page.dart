@@ -1,4 +1,3 @@
-import 'package:core/api/tmdb_api.dart';
 import 'package:core/models/tmdb/tmdb_movie_basic.dart';
 import 'package:core/ui/movies_grid.dart';
 import 'package:core/ui/scrollable_movies_page_builder.dart';

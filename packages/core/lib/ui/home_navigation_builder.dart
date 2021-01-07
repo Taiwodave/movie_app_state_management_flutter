@@ -39,7 +39,7 @@ class BottomNavigation extends StatelessWidget {
       currentIndex: currentTab.index,
       items: const [
         BottomNavigationBarItem(
-          icon: Icon(Icons.stacked_bar_chart),
+          icon: Icon(Icons.movie),
           label: 'Now Playing',
         ),
         BottomNavigationBarItem(
@@ -47,7 +47,7 @@ class BottomNavigation extends StatelessWidget {
           label: 'Favourites',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.directions_railway),
+          icon: Icon(Icons.person),
           label: 'Profiles',
         ),
       ],
