@@ -1,4 +1,4 @@
-package com.example.movie_app_demo_flutter_bloc
+package com.example.movie_app_demo_flutter
 
 import io.flutter.embedding.android.FlutterActivity
 
