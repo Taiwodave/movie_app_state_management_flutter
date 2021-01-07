@@ -4,20 +4,12 @@ import 'package:core/ui/scrollable_movies_page_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app_demo_flutter/top_level_providers.dart';
-import 'package:rxdart/rxdart.dart';
 
 final profileFavouriteMoviesProvider =
     StreamProvider.autoDispose<List<TMDBMovieBasic>>((ref) {
   final dataStore = ref.watch(dataStoreProvider);
   final profilesData = ref.watch(profilesDataProvider);
-  if (profilesData?.selectedId != null) {
-    return Rx.combineLatest2(dataStore.allSavedMovies(),
-        dataStore.favouriteMovies(profileId: profilesData.selectedId),
-        (List<TMDBMovieBasic> movies, List<int> favourites) {
-      return movies.where((movie) => favourites.contains(movie.id)).toList();
-    });
-  }
-  return Stream.empty();
+  return dataStore.favouriteMovies(profileId: profilesData?.selectedId);
 });
 
 class FavouritesPage extends ConsumerWidget {

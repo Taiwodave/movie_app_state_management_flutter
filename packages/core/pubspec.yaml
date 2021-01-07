@@ -17,6 +17,7 @@ dependencies:
   path_provider: ^1.6.24
   sembast: ^2.4.8+1
   transparent_image: ^1.0.0
+  rxdart: ^0.25.0
 
 dev_dependencies:
   flutter_test:

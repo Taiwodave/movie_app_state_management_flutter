@@ -21,5 +21,6 @@ abstract class DataStore {
   Stream<bool> favouriteMovie(
       {@required String profileId, @required TMDBMovieBasic movie});
   Stream<List<TMDBMovieBasic>> allSavedMovies();
-  Stream<List<int>> favouriteMovies({@required String profileId});
+  Stream<List<int>> favouriteMovieIDs({@required String profileId});
+  Stream<List<TMDBMovieBasic>> favouriteMovies({@required String profileId});
 }

@@ -1,9 +1,10 @@
-import 'package:core/models/app_models/favourite_movies.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 import '../models/app_models/profile.dart';
+import '../models/app_models/favourite_movies.dart';
 import '../models/app_models/profiles_data.dart';
 import '../models/app_models/movies_data.dart';
 import '../models/tmdb/tmdb_movie_basic.dart';
@@ -168,10 +169,24 @@ class SembastDataStore implements DataStore {
     });
   }
 
-  Stream<List<int>> favouriteMovies({@required String profileId}) {
+  Stream<List<int>> favouriteMovieIDs({@required String profileId}) {
     final record = store.record(StorePath.favouriteMovies(profileId));
     return record.onSnapshot(db).map((snapshot) => snapshot?.value != null
         ? FavouriteMovies.fromJson(snapshot.value).favouriteIDs.toList()
         : []);
+  }
+
+  // Technically this should not belong to this class as it only combines streams
+  // and introduces an extra dependency (RxDart). But it's better than copy-pasting
+  // this code in all the apps.
+  Stream<List<TMDBMovieBasic>> favouriteMovies({@required String profileId}) {
+    if (profileId != null) {
+      return Rx.combineLatest2(
+          allSavedMovies(), favouriteMovieIDs(profileId: profileId),
+          (List<TMDBMovieBasic> movies, List<int> favourites) {
+        return movies.where((movie) => favourites.contains(movie.id)).toList();
+      });
+    }
+    return Stream.empty();
   }
 }

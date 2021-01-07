@@ -37,12 +37,7 @@ class AppStartupPage extends StatelessWidget {
                 if (tabItem == TabItem.nowPlaying) {
                   return NowPlayingPage.create(context);
                 } else if (tabItem == TabItem.favourites) {
-                  return FavouritesPage(
-                    favouriteMoviesRepository: FavouriteMoviesRepository(
-                      dataStore: RepositoryProvider.of<DataStore>(context),
-                      profilesData: profilesData,
-                    ),
-                  );
+                  return FavouritesPage();
                 } else {
                   return ProfileSelectionPage();
                 }
