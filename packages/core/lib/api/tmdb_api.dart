@@ -44,12 +44,7 @@ class TMDBApi {
 
 class TMDBClient {
   Future<TMDBMoviesResponse> nowPlayingMovies({int page}) async {
-    final response = await _fetch(TMDBApi.moviesNowPlaying(page));
+    final response = await http.get(TMDBApi.moviesNowPlaying(page));
     return TMDBMoviesResponse.fromJson(json.decode(response.body));
-  }
-
-  Future<http.Response> _fetch(String url) async {
-    print("requesting: " + url);
-    return await http.get(url);
   }
 }
