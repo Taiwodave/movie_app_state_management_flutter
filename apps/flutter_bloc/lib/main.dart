@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:core/persistence/local_db.dart';
+import 'package:core/persistence/sembast_data_store.dart';
+import 'package:core/persistence/data_store.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:movie_app_demo_flutter_bloc/app/app_startup/app_startup_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Initialize DB
+  // Initialize data store
   final appDocDir = await getApplicationDocumentsDirectory();
-  // sembast.db: Andrea, Chiara, Lisa
-  final localDb = await LocalDB.init('${appDocDir.path}/sembast2.db');
-  runApp(RepositoryProvider<LocalDB>(
-    create: (_) => localDb,
+  final dataStore =
+      await SembastDataStore.init('${appDocDir.path}/sembast2.db');
+  runApp(RepositoryProvider<DataStore>(
+    create: (_) => dataStore,
     child: MyApp(),
   ));
 }

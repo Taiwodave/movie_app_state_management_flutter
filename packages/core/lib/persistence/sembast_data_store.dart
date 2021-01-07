@@ -1,29 +1,18 @@
 import 'package:core/models/profile/profile.dart';
 import 'package:core/models/profile/profiles_data.dart';
+import 'package:core/persistence/data_store.dart';
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 
-/*
- Profile selection
- - Show selected in profiles page (two streams?)
- - On Select, switch back to main navigation page (students asked for this)
- - Need to know at runtime what's the selected profile
- Option 1: 
- - keep "selected" flag per-profile
- - pro: easy to show if a profile is selected
- - cons: need to update all profiles when one is selected
- - hard to work out the selected one (at a snapshot)
- - could store this in Profiles class
- -> Make profiles class available to all
- */
-class LocalDB {
+/// Data store implementation using Sembast (local NoSQL database)
+class SembastDataStore implements DataStore {
   static DatabaseFactory dbFactory = databaseFactoryIo;
 
-  LocalDB(this.db);
+  SembastDataStore(this.db);
   final Database db;
   final store = StoreRef.main();
 
-  static Future<LocalDB> init(String dbPath) async => LocalDB(
+  static Future<SembastDataStore> init(String dbPath) async => SembastDataStore(
         // We use the database factory to open the database
         await dbFactory.openDatabase(dbPath),
       );

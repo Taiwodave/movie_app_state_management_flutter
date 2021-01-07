@@ -6,8 +6,8 @@ import 'package:movie_app_demo_riverpod/top_level_providers.dart';
 
 final createProfileModelProvider =
     StateNotifierProvider<CreateProfileModel>((ref) {
-  final localDB = ref.watch(localDBProvider);
-  return CreateProfileModel(localDB: localDB);
+  final dataStore = ref.watch(dataStoreProvider);
+  return CreateProfileModel(dataStore: dataStore);
 });
 
 class CreateProfilePageBuilder extends ConsumerWidget {

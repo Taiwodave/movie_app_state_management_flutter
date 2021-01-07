@@ -1,17 +1,16 @@
 import 'dart:async';
 
-import 'package:core/models/profile/profiles_data.dart';
-import 'package:core/persistence/local_db.dart';
+import 'package:core/persistence/data_store.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core/models/app_state/app_startup_state.dart';
 
 class AppStartupCubit extends Cubit<AppStartupState> {
-  AppStartupCubit({@required this.localDB})
+  AppStartupCubit({@required this.dataStore})
       : super(const AppStartupState.initializing()) {
     init();
   }
-  final LocalDB localDB;
+  final DataStore dataStore;
   StreamSubscription _subscription;
 
   void dispose() {
@@ -19,7 +18,7 @@ class AppStartupCubit extends Cubit<AppStartupState> {
   }
 
   void init() {
-    _subscription = localDB.profilesData().listen((profilesData) {
+    _subscription = dataStore.profilesData().listen((profilesData) {
       if (profilesData.selectedId == null || profilesData.profiles.isEmpty) {
         emit(const AppStartupState.needsProfile());
       } else {

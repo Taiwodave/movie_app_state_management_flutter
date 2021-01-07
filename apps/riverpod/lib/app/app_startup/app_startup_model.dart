@@ -1,16 +1,16 @@
 import 'dart:async';
 
-import 'package:core/persistence/local_db.dart';
+import 'package:core/persistence/data_store.dart';
 import 'package:flutter/foundation.dart';
 import 'package:core/models/app_state/app_startup_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AppStartupModel extends StateNotifier<AppStartupState> {
-  AppStartupModel({@required this.localDB})
+  AppStartupModel({@required this.dataStore})
       : super(const AppStartupState.initializing()) {
     init();
   }
-  final LocalDB localDB;
+  final DataStore dataStore;
   StreamSubscription _subscription;
 
   @override
@@ -20,7 +20,7 @@ class AppStartupModel extends StateNotifier<AppStartupState> {
   }
 
   void init() {
-    _subscription = localDB.profilesData().listen((profilesData) {
+    _subscription = dataStore.profilesData().listen((profilesData) {
       if (profilesData.selectedId == null || profilesData.profiles.isEmpty) {
         state = AppStartupState.needsProfile();
       } else {

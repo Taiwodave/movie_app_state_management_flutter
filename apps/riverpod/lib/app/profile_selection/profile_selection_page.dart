@@ -25,10 +25,10 @@ class ProfileSelectionPage extends ConsumerWidget {
         profilesData: profilesData,
         onAddProfile: () => addProfile(context),
         onSelectedProfile: (profile) async {
-          final localDB = context.read(localDBProvider);
+          final dataStore = context.read(dataStoreProvider);
           // the selected profile is an app-state variable.
           // changing this will cause a reload of AppStartupPage
-          await localDB.setSelectedProfile(profile);
+          await dataStore.setSelectedProfile(profile);
         },
       ),
     );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:core/persistence/local_db.dart';
+import 'package:core/persistence/sembast_data_store.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app_demo_riverpod/app/app_startup/app_startup_page.dart';
 import 'package:movie_app_demo_riverpod/top_level_providers.dart';
@@ -10,10 +10,11 @@ Future<void> main() async {
   // Initialize DB
   final appDocDir = await getApplicationDocumentsDirectory();
   // sembast.db: Andrea, Chiara, Lisa
-  final localDb = await LocalDB.init('${appDocDir.path}/sembast2.db');
+  final dataStore =
+      await SembastDataStore.init('${appDocDir.path}/sembast2.db');
   runApp(ProviderScope(
     overrides: [
-      localDBProvider.overrideWithValue(localDb),
+      dataStoreProvider.overrideWithValue(dataStore),
     ],
     child: MyApp(),
   ));
