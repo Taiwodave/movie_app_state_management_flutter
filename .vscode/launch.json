@@ -5,6 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "provider",
+            "cwd": "apps/provider",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
             "name": "flutter_bloc",
             "cwd": "apps/flutter_bloc",
             "request": "launch",
