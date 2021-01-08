@@ -13,8 +13,10 @@ class AppStartupCubit extends Cubit<AppStartupState> {
   final DataStore dataStore;
   StreamSubscription _subscription;
 
-  void dispose() {
+  @override
+  Future<void> close() {
     _subscription?.cancel();
+    return super.close();
   }
 
   void init() {

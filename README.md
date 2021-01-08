@@ -82,9 +82,9 @@ The business logic and screen flows are identical for each app, but the semantic
 
 The current state management solutions are currently supported:
 
-- [x] [Riverpod](https://pub.dev/packages/riverpod) (using `StateNotifier`)
+- [x] [Provider](https://pub.dev/packages/provider) (using `StateNotifier`)
 - [x] [flutter_bloc](https://pub.dev/packages/flutter_bloc) (using `Cubit`)
-- [ ] Provider
+- [x] [Riverpod](https://pub.dev/packages/riverpod) (using `StateNotifier`)
 
 I plan to add more in the future (PRs welcome!).
 

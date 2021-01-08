@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:core/models/app_state/app_startup_state.dart';
 import 'package:state_notifier/state_notifier.dart';
 
-class AppStartupModel extends StateNotifier<AppStartupState> with LocatorMixin {
+class AppStartupModel extends StateNotifier<AppStartupState> {
   AppStartupModel({@required this.dataStore})
       : super(const AppStartupState.initializing()) {
     init();
